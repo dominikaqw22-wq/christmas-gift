@@ -137,17 +137,19 @@ function RedParticles({ centerX, centerY }: { centerX?: number; centerY?: number
           p.life = 1;
         }
         
+        // Fade out mais suave conforme a partícula se afasta
+        const fadeOut = Math.max(0, p.life * p.life); // Quadrático para fade out mais suave
         const red = 255;
-        const green = Math.floor(30 + p.life * 30);
-        const blue = Math.floor(30 + p.life * 30);
-        ctx.fillStyle = `rgba(${red}, ${green}, ${blue}, ${p.opacity * p.life * 0.8})`;
+        const green = Math.floor(30 + fadeOut * 30);
+        const blue = Math.floor(30 + fadeOut * 30);
+        ctx.fillStyle = `rgba(${red}, ${green}, ${blue}, ${p.opacity * fadeOut * 0.6})`;
         ctx.beginPath();
-        ctx.arc(p.x, p.y, p.radius * p.life, 0, Math.PI * 2);
+        ctx.arc(p.x, p.y, p.radius * fadeOut, 0, Math.PI * 2);
         ctx.fill();
         
-        ctx.fillStyle = `rgba(${red}, ${green}, ${blue}, ${p.opacity * p.life * 0.3})`;
+        ctx.fillStyle = `rgba(${red}, ${green}, ${blue}, ${p.opacity * fadeOut * 0.2})`;
         ctx.beginPath();
-        ctx.arc(p.x, p.y, p.radius * p.life * 2, 0, Math.PI * 2);
+        ctx.arc(p.x, p.y, p.radius * fadeOut * 2, 0, Math.PI * 2);
         ctx.fill();
       });
       requestAnimationFrame(loop);
@@ -605,7 +607,7 @@ function AvatarJourney({ currentSlide, avatarsFadingOut }: { currentSlide: numbe
             {/* On mobile render the together image fixed so its glow isn't clipped */}
             {isMobile ? (
               <div style={{ position: 'fixed', left: '50%', top: 'clamp(6%, 8%, 10%)', transform: 'translate(-50%, 0)', width: 'clamp(320px, 80vw, 420px)', height: 'clamp(320px, 80vw, 420px)', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'visible', zIndex: 220, pointerEvents: 'none' }}>
-                <div style={{ position: 'absolute', width: '140%', height: '140%', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 219 }}>
+                <div style={{ position: 'absolute', width: '200%', height: '200%', maxWidth: '600px', maxHeight: '600px', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 219 }}>
                   <RedParticles />
                 </div>
                 <img src={ASSETS.TOGETHER} alt="Together" className="animate-comfy-float animate-fade-in-final" draggable={false} style={{ width: '100%', height: '100%', objectFit: 'contain', WebkitUserDrag: 'none', position: 'relative', zIndex: 221 }} />
@@ -706,8 +708,8 @@ function FloatingBalloon({ onClick, show }: { onClick: () => void; show: boolean
       style={{
         position: isMobileView ? 'fixed' : 'absolute',
         // Keep balloon visible above envelope, relative to parent container
-        right: isMobileView ? 'clamp(8%, 12vw, 18%)' : 'clamp(8%, 10vw, 14%)',
-        top: isMobileView ? 'clamp(35vh, 40vh, 45vh)' : 'clamp(-80px, -10vh, -60px)',
+        right: isMobileView ? 'clamp(5%, 8vw, 12%)' : 'clamp(8%, 10vw, 14%)',
+        top: isMobileView ? 'clamp(42vh, 47vh, 52vh)' : 'clamp(-80px, -10vh, -60px)',
         cursor: 'pointer',
         zIndex: 270,
         display: 'flex',
@@ -737,8 +739,8 @@ function FloatingBalloon({ onClick, show }: { onClick: () => void; show: boolean
             e.currentTarget.style.filter = 'drop-shadow(0 0 6px #8528ee) drop-shadow(0 0 12px rgba(133, 40, 238, 0.2))';
           }}
           style={{
-            width: isMobileView ? 'min(140px, 35vw)' : 'clamp(140px, 30vw, 180px)',
-            height: isMobileView ? 'min(140px, 35vw)' : 'clamp(140px, 30vw, 180px)',
+            width: isMobileView ? 'min(120px, 30vw)' : 'clamp(140px, 30vw, 180px)',
+            height: isMobileView ? 'min(120px, 30vw)' : 'clamp(140px, 30vw, 180px)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
