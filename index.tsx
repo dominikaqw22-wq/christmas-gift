@@ -32,6 +32,7 @@ import ChristmasAudio from './Audio/Snow Days - Christmas Lofi & Jazzhop.mp3';
 import ClickSfx from './Audio/click.mp3';
 import ExtraGiftImg from './Images/ExtraGift.png';
 import CatGif from './Images/cat.gif';
+import GCBackground from './Images/GCBackground.png';
 
 const ASSETS = {
   ME: [
@@ -642,7 +643,7 @@ function GiftCard({ code, onCopy }: { code: string; onCopy: () => void }) {
         overflow: 'hidden',
         borderRadius: '2.2rem',
         padding: 0,
-        backgroundImage: 'url(./Images/GCBackground.png)',
+        backgroundImage: `url(${GCBackground})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
