@@ -2,16 +2,19 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react-swc';
 
 export default defineConfig({
-  base: '',
+  base: '/',
   server: {
     port: 3000,
     host: '0.0.0.0',
   },
   plugins: [react()],
+  publicDir: 'public',
+  assetsInclude: ['**/*.png', '**/*.gif', '**/*.ico', '**/*.mp3'],
   build: {
     commonjsOptions: {
       include: [/node_modules/],
       transformMixedEsModules: true,
-    }
+    },
+    copyPublicDir: true,
   }
 });

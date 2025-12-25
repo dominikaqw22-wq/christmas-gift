@@ -12,8 +12,8 @@ dist
 dist-ssr
 *.local
 
-# Audio files (large)
-Audio/*.mp3
+# Audio files (large) - comentado para permitir upload
+# Audio/*.mp3
 
 # Editor directories and files
 .vscode/*
