@@ -81,7 +81,7 @@ const SLIDES = [
   { text: "**MERRY CHRISTMAS, my Spooky Love!**", mood: "final" }
 ];
 
-function RedParticles() {
+function RedParticles({ centerX, centerY }: { centerX?: number; centerY?: number }) {
   const canvasRef = React.useRef<HTMLCanvasElement>(null);
   
   React.useEffect(() => {
@@ -90,19 +90,26 @@ function RedParticles() {
     const ctx = canvas.getContext('2d', { alpha: true });
     if (!ctx) return;
     
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    const updateCanvas = () => {
+      const canvasWidth = Math.min(window.innerWidth, 800);
+      const canvasHeight = Math.min(window.innerHeight, 800);
+      canvas.width = canvasWidth;
+      canvas.height = canvasHeight;
+    };
+    
+    updateCanvas();
+    window.addEventListener('resize', updateCanvas);
     
     const count = 220;
-    const centerX = canvas.width / 2;
-    const centerY = canvas.height / 2;
+    const particleCenterX = centerX !== undefined ? centerX : canvas.width / 2;
+    const particleCenterY = centerY !== undefined ? centerY : canvas.height / 2;
     
     const particles = Array.from({ length: count }, () => {
       const angle = Math.random() * Math.PI * 2;
       const speed = Math.random() * 0.8 + 0.4;
       return {
-        x: centerX + (Math.random() - 0.5) * 20,
-        y: centerY + (Math.random() - 0.5) * 20,
+        x: particleCenterX + (Math.random() - 0.5) * 20,
+        y: particleCenterY + (Math.random() - 0.5) * 20,
         vx: Math.cos(angle) * speed,
         vy: Math.sin(angle) * speed,
         radius: Math.random() * 3 + 1.5,
@@ -121,8 +128,8 @@ function RedParticles() {
         p.life -= p.decay;
         
         if (p.life <= 0) {
-          p.x = centerX + (Math.random() - 0.5) * 20;
-          p.y = centerY + (Math.random() - 0.5) * 20;
+          p.x = particleCenterX + (Math.random() - 0.5) * 20;
+          p.y = particleCenterY + (Math.random() - 0.5) * 20;
           const angle = Math.random() * Math.PI * 2;
           const speed = Math.random() * 0.8 + 0.4;
           p.vx = Math.cos(angle) * speed;
@@ -148,19 +155,22 @@ function RedParticles() {
     
     loop();
     loop();
-  }, []);
+    
+    return () => {
+      window.removeEventListener('resize', updateCanvas);
+    };
+  }, [centerX, centerY]);
   
   return (
     <canvas 
       ref={canvasRef}
       style={{
-        position: 'fixed',
-        width: '100vw',
-        height: '100vh',
+        position: 'absolute',
+        width: '100%',
+        height: '100%',
         top: 0,
         left: 0,
-        pointerEvents: 'none',
-        zIndex: 219
+        pointerEvents: 'none'
       }}
     />
   );
@@ -589,16 +599,22 @@ function AvatarJourney({ currentSlide, avatarsFadingOut }: { currentSlide: numbe
 
   if (isFinal) {
     return (
-      <div style={{ position: 'relative', width: '100%', maxWidth: '100vw', height: isMobile ? 'clamp(280px, 42vh, 420px)' : 'clamp(520px, 70vh, 720px)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '0', marginTop: isMobile ? 'clamp(0.5rem, 2vh, 1.5rem)' : 'clamp(2rem, 6vh, 4rem)', padding: '0', overflow: 'visible' }}>
+      <div style={{ position: 'relative', width: '100%', maxWidth: '100%', height: isMobile ? 'clamp(260px, 38vh, 380px)' : 'clamp(520px, 70vh, 720px)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '0', marginTop: isMobile ? 'clamp(0.25rem, 1.5vh, 1rem)' : 'clamp(2rem, 6vh, 4rem)', padding: '0', overflow: 'visible' }}>
         <div className="parallax-slow" style={{ position: 'relative', width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'visible' }}>
-          <div style={{ position: 'relative', width: isMobile ? 'clamp(280px, 75vw, 380px)' : 'clamp(420px, 80vw, 620px)', height: isMobile ? 'clamp(280px, 75vw, 380px)' : 'clamp(420px, 80vw, 620px)', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'visible' }}>
+          <div style={{ position: 'relative', width: isMobile ? 'clamp(260px, 70vw, 350px)' : 'clamp(420px, 80vw, 620px)', height: isMobile ? 'clamp(260px, 70vw, 350px)' : 'clamp(420px, 80vw, 620px)', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'visible' }}>
             {/* On mobile render the together image fixed so its glow isn't clipped */}
             {isMobile ? (
-              <div style={{ position: 'fixed', left: '50%', top: '8%', transform: 'translate(-50%, 0)', width: 'clamp(280px, 75vw, 380px)', height: 'clamp(280px, 75vw, 380px)', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'visible', zIndex: 220, pointerEvents: 'none' }}>
+              <div style={{ position: 'fixed', left: '50%', top: 'clamp(8%, 10%, 12%)', transform: 'translate(-50%, 0)', width: 'clamp(260px, 70vw, 350px)', height: 'clamp(260px, 70vw, 350px)', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'visible', zIndex: 220, pointerEvents: 'none' }}>
+                <div style={{ position: 'absolute', width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 219 }}>
+                  <RedParticles />
+                </div>
                 <img src={ASSETS.TOGETHER} alt="Together" className="animate-comfy-float animate-fade-in-final" draggable={false} style={{ width: '100%', height: '100%', objectFit: 'contain', filter: 'drop-shadow(0 0 60px rgba(255,0,0,0.6)) drop-shadow(0 0 100px rgba(255,0,0,0.4)) drop-shadow(0 0 140px rgba(255,0,0,0.3))', WebkitUserDrag: 'none', position: 'relative', zIndex: 221 }} />
               </div>
             ) : (
               <>
+                <div style={{ position: 'absolute', width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 0 }}>
+                  <RedParticles />
+                </div>
                 <img src={ASSETS.TOGETHER} alt="Together" className="animate-comfy-float animate-fade-in-final" draggable={false} style={{ width: '100%', height: '100%', objectFit: 'contain', filter: 'drop-shadow(0 0 60px rgba(255,0,0,0.7)) drop-shadow(0 0 100px rgba(255,0,0,0.5)) drop-shadow(0 0 160px rgba(255,0,0,0.4))', WebkitUserDrag: 'none', position: 'relative', zIndex: 1 }} />
               </>
             )}
@@ -1093,7 +1109,6 @@ function App() {
       }} />
       <Snowfall />
       <SnowOverlay />
-      {isFinal && <RedParticles />}
 
 
       <div style={{
@@ -1193,10 +1208,10 @@ function App() {
 
       <main style={{
         width: '100%',
-        maxWidth: isFinal ? '100vw' : 'min(80rem, 100vw)',
+        maxWidth: '100vw',
         padding: isFinal
-          ? (isMobileView ? 'clamp(0.25rem, 2vw, 0.75rem)' : 'clamp(0.5rem, 3vw, 1rem)')
-          : (isMobileView ? 'clamp(0.5rem, 3vw, 0.75rem)' : 'clamp(0.75rem, 5vw, 1rem)'),
+          ? (isMobileView ? '0' : 'clamp(0.5rem, 3vw, 1rem)')
+          : (isMobileView ? 'clamp(0.25rem, 2vw, 0.5rem)' : 'clamp(0.75rem, 5vw, 1rem)'),
         margin: '0 auto',
         display: 'flex',
         flexDirection: 'column',
@@ -1207,7 +1222,7 @@ function App() {
         position: 'relative',
         zIndex: 10,
         borderRadius: isFinal ? '0' : '12px',
-        overflow: 'visible',
+        overflow: 'hidden',
         boxSizing: 'border-box',
         overflowX: 'hidden'
       }}>
@@ -1268,15 +1283,16 @@ function App() {
         <div style={{
            minHeight: isMobileView ? 'auto' : '500px',
            width: '100%',
-           maxWidth: '100vw',
+           maxWidth: '100%',
            display: 'flex',
            flexDirection: 'column',
            alignItems: 'center',
            justifyContent: 'flex-start',
-           paddingTop: isMobileView ? 'clamp(0.5rem, 2vw, 1rem)' : 'clamp(1.5rem, 5vw, 3rem)',
-           paddingLeft: '0.5rem',
-           paddingRight: '0.5rem',
+           paddingTop: isMobileView ? 'clamp(0.25rem, 1.5vw, 0.75rem)' : 'clamp(1.5rem, 5vw, 3rem)',
+           paddingLeft: isMobileView ? '0.25rem' : '0.5rem',
+           paddingRight: isMobileView ? '0.25rem' : '0.5rem',
            boxSizing: 'border-box',
+           overflow: 'hidden',
            overflowX: 'hidden',
            flex: 1
         }}>
