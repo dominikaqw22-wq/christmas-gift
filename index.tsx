@@ -581,7 +581,7 @@ function AvatarJourney({ currentSlide, avatarsFadingOut }: { currentSlide: numbe
 
   if (isFinal) {
     return (
-      <div style={{ position: 'relative', width: '100%', height: isMobile ? 'clamp(440px, 65vh, 720px)' : 'clamp(520px, 70vh, 800px)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1rem', marginTop: isMobile ? 'clamp(2rem, 6vh, 4rem)' : 'clamp(3rem, 8vh, 5rem)', overflow: 'visible' }}>
+      <div style={{ position: 'relative', width: '100%', height: isMobile ? 'clamp(520px, 78vh, 860px)' : 'clamp(620px, 82vh, 920px)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: isMobile ? '1.5rem' : '2rem', marginTop: isMobile ? 'clamp(1rem, 4vh, 3rem)' : 'clamp(2rem, 6vh, 4rem)', padding: isMobile ? '0 0.5rem' : '0 1rem', overflow: 'visible' }}>
         <div className="parallax-slow" style={{ position: 'relative', width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <div style={{ position: 'relative', width: 'clamp(420px, 86vw, 680px)', height: 'clamp(420px, 86vw, 680px)', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'visible' }}>
             {/* On mobile render the together image fixed so its glow isn't clipped by ancestor overflow:hidden */}
@@ -726,9 +726,9 @@ function FloatingBalloon({ onClick, show }: { onClick: () => void; show: boolean
       className="animate-gentle-float"
       style={{
         position: 'absolute',
-        // On mobile keep balloon inside viewport with safe offsets
-        right: isMobileView ? 'clamp(3%, 6vw, 10%)' : 'clamp(6%, 10vw, 14%)',
-        top: isMobileView ? 'clamp(6%, 10vh, 14%)' : 'clamp(8%, 12vh, 16%)',
+        // Keep balloon fully visible; bias to bottom-right on mobile
+        right: isMobileView ? 'clamp(4%, 8vw, 12%)' : 'clamp(6%, 10vw, 14%)',
+        top: isMobileView ? 'clamp(18%, 24vh, 30%)' : 'clamp(10%, 14vh, 18%)',
         cursor: 'pointer',
         zIndex: 50,
         display: 'flex',
@@ -1242,7 +1242,7 @@ function App() {
         height: isMobileView ? 'auto' : 'auto',
         position: 'relative',
         zIndex: 10,
-        borderRadius: '12px',
+        borderRadius: isFinal ? '0' : '12px',
         overflow: 'visible',
         boxSizing: 'border-box',
         overflowX: 'hidden'
@@ -1582,7 +1582,7 @@ function App() {
                 </div>
             </>
           ) : (
-            <div style={{ position: 'relative', marginTop: isMobileView ? '-1rem' : '-2rem', width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: isMobileView ? '0 0.75rem 3rem' : '0 1rem 3rem', minHeight: isMobileView ? 'min(70vh, 520px)' : 'min(70vh, 560px)', justifyContent: 'flex-start', zIndex: 10, overflow: 'visible' }}>
+            <div style={{ position: 'relative', marginTop: isMobileView ? '-1rem' : '-2rem', width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: isMobileView ? '0 0.75rem 5rem' : '0 1rem 4rem', minHeight: isMobileView ? 'min(75vh, 620px)' : 'min(75vh, 660px)', justifyContent: 'flex-start', zIndex: 10, overflow: 'visible' }}>
               <FloatingBalloon onClick={() => setShowExtraModal(true)} show={isFinal} />
               {unboxingStage < 4 ? (
                 <div 
