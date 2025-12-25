@@ -512,7 +512,6 @@ function Typewriter({ text, onComplete, shouldBlink = false }: { text: string; o
 
 function AvatarJourney({ currentSlide, avatarsFadingOut }: { currentSlide: number; avatarsFadingOut?: boolean }) {
   const total = SLIDES.length;
-  const approachProgress = Math.min(1, Math.max(0, (currentSlide - 1) / Math.max(1, total - 2)));
   const isFinal = currentSlide === total - 1;
 
   const [viewportWidth, setViewportWidth] = React.useState<number>(() => typeof window !== 'undefined' ? window.innerWidth : 1024);
@@ -534,6 +533,10 @@ function AvatarJourney({ currentSlide, avatarsFadingOut }: { currentSlide: numbe
 
   const totalSlides = total;
   const mobileDenom = Math.max(1, totalSlides - 2);
+  const desktopDenom = Math.max(1, totalSlides - 1);
+  
+  // Desktop também começa no slide 0 agora
+  const approachProgress = Math.min(1, Math.max(0, currentSlide / desktopDenom));
   const approachProgressMobile = isMobile ? Math.min(currentSlide / mobileDenom, 1) : approachProgress;
 
   // Avatar sizing and gaps
