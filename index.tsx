@@ -607,16 +607,10 @@ function AvatarJourney({ currentSlide, avatarsFadingOut }: { currentSlide: numbe
             {/* On mobile render the together image fixed so its glow isn't clipped */}
             {isMobile ? (
               <div style={{ position: 'fixed', left: '50%', top: 'clamp(6%, 8%, 10%)', transform: 'translate(-50%, 0)', width: 'clamp(320px, 80vw, 420px)', height: 'clamp(320px, 80vw, 420px)', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'visible', zIndex: 220, pointerEvents: 'none' }}>
-                <div style={{ position: 'absolute', width: '200%', height: '200%', maxWidth: '600px', maxHeight: '600px', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 219 }}>
-                  <RedParticles />
-                </div>
                 <img src={ASSETS.TOGETHER} alt="Together" className="animate-comfy-float animate-fade-in-final" draggable={false} style={{ width: '100%', height: '100%', objectFit: 'contain', WebkitUserDrag: 'none', position: 'relative', zIndex: 221 }} />
               </div>
             ) : (
               <>
-                <div style={{ position: 'absolute', width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 0 }}>
-                  <RedParticles />
-                </div>
                 <img src={ASSETS.TOGETHER} alt="Together" className="animate-comfy-float animate-fade-in-final" draggable={false} style={{ width: '100%', height: '100%', objectFit: 'contain', WebkitUserDrag: 'none', position: 'relative', zIndex: 1 }} />
               </>
             )}
@@ -708,8 +702,8 @@ function FloatingBalloon({ onClick, show }: { onClick: () => void; show: boolean
       style={{
         position: isMobileView ? 'fixed' : 'absolute',
         // Keep balloon visible above envelope, relative to parent container
-        right: isMobileView ? 'clamp(2%, 4vw, 6%)' : 'clamp(8%, 10vw, 14%)',
-        top: isMobileView ? 'clamp(60vh, 65vh, 70vh)' : 'clamp(-80px, -10vh, -60px)',
+        right: isMobileView ? 'clamp(1%, 2vw, 4%)' : 'clamp(8%, 10vw, 14%)',
+        top: isMobileView ? 'clamp(35vh, 40vh, 45vh)' : 'clamp(-80px, -10vh, -60px)',
         cursor: 'pointer',
         zIndex: 270,
         display: 'flex',
@@ -1566,7 +1560,7 @@ function App() {
                 </div>
             </>
           ) : (
-            <div style={{ position: 'relative', marginTop: '0', width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: isMobileView ? '0 0.75rem 2rem' : '0 1rem 3rem', minHeight: 'auto', justifyContent: 'flex-start', zIndex: 250, overflow: 'visible' }}>
+            <div style={{ position: 'relative', marginTop: isMobileView ? 'clamp(25vh, 30vh, 35vh)' : '0', width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: isMobileView ? '0 0.75rem 2rem' : '0 1rem 3rem', minHeight: 'auto', justifyContent: 'flex-start', zIndex: 250, overflow: 'visible' }}>
               <FloatingBalloon onClick={() => setShowExtraModal(true)} show={isFinal} />
               {unboxingStage < 4 ? (
                 <div 
