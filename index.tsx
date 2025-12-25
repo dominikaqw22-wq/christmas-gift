@@ -708,8 +708,8 @@ function FloatingBalloon({ onClick, show }: { onClick: () => void; show: boolean
       style={{
         position: isMobileView ? 'fixed' : 'absolute',
         // Keep balloon visible above envelope, relative to parent container
-        right: isMobileView ? 'clamp(5%, 8vw, 12%)' : 'clamp(8%, 10vw, 14%)',
-        top: isMobileView ? 'clamp(42vh, 47vh, 52vh)' : 'clamp(-80px, -10vh, -60px)',
+        right: isMobileView ? 'clamp(2%, 4vw, 6%)' : 'clamp(8%, 10vw, 14%)',
+        top: isMobileView ? 'clamp(60vh, 65vh, 70vh)' : 'clamp(-80px, -10vh, -60px)',
         cursor: 'pointer',
         zIndex: 270,
         display: 'flex',
