@@ -608,14 +608,14 @@ function AvatarJourney({ currentSlide, avatarsFadingOut }: { currentSlide: numbe
                 <div style={{ position: 'absolute', width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 219 }}>
                   <RedParticles />
                 </div>
-                <img src={ASSETS.TOGETHER} alt="Together" className="animate-comfy-float animate-fade-in-final" draggable={false} style={{ width: '100%', height: '100%', objectFit: 'contain', filter: 'drop-shadow(0 0 60px rgba(255,0,0,0.6)) drop-shadow(0 0 100px rgba(255,0,0,0.4)) drop-shadow(0 0 140px rgba(255,0,0,0.3))', WebkitUserDrag: 'none', position: 'relative', zIndex: 221 }} />
+                <img src={ASSETS.TOGETHER} alt="Together" className="animate-comfy-float animate-fade-in-final" draggable={false} style={{ width: '100%', height: '100%', objectFit: 'contain', WebkitUserDrag: 'none', position: 'relative', zIndex: 221 }} />
               </div>
             ) : (
               <>
                 <div style={{ position: 'absolute', width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 0 }}>
                   <RedParticles />
                 </div>
-                <img src={ASSETS.TOGETHER} alt="Together" className="animate-comfy-float animate-fade-in-final" draggable={false} style={{ width: '100%', height: '100%', objectFit: 'contain', filter: 'drop-shadow(0 0 60px rgba(255,0,0,0.7)) drop-shadow(0 0 100px rgba(255,0,0,0.5)) drop-shadow(0 0 160px rgba(255,0,0,0.4))', WebkitUserDrag: 'none', position: 'relative', zIndex: 1 }} />
+                <img src={ASSETS.TOGETHER} alt="Together" className="animate-comfy-float animate-fade-in-final" draggable={false} style={{ width: '100%', height: '100%', objectFit: 'contain', WebkitUserDrag: 'none', position: 'relative', zIndex: 1 }} />
               </>
             )}
           </div>
@@ -735,8 +735,8 @@ function FloatingBalloon({ onClick, show }: { onClick: () => void; show: boolean
             e.currentTarget.style.filter = 'drop-shadow(0 0 6px #8528ee) drop-shadow(0 0 12px rgba(133, 40, 238, 0.2))';
           }}
           style={{
-            width: isMobileView ? 'clamp(100px, 22vw, 140px)' : 'clamp(140px, 30vw, 180px)',
-            height: isMobileView ? 'clamp(100px, 22vw, 140px)' : 'clamp(140px, 30vw, 180px)',
+            width: isMobileView ? 'min(180px, 45vw)' : 'clamp(140px, 30vw, 180px)',
+            height: isMobileView ? 'min(180px, 45vw)' : 'clamp(140px, 30vw, 180px)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
