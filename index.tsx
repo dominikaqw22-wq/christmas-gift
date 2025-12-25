@@ -187,10 +187,14 @@ function SnowOverlay() {
     const ctx = canvas.getContext('2d', { alpha: true });
     if (!ctx) return;
     
+    // Fix initial screen size to prevent keyboard resize issues
+    const fixedWidth = window.innerWidth;
+    const fixedHeight = window.innerHeight;
+    
     const count = 60;
     const particles = Array.from({ length: count }, () => ({
-      x: Math.random() * window.innerWidth,
-      y: Math.random() * window.innerHeight,
+      x: Math.random() * fixedWidth,
+      y: Math.random() * fixedHeight,
       vy: Math.random() * 0.4 + 0.15,
       vx: (Math.random() - 0.5) * 0.08,
       radius: Math.random() * 2 + 0.8,
@@ -204,12 +208,12 @@ function SnowOverlay() {
         p.y += p.vy;
         p.x += p.vx;
         
-        if (p.y > window.innerHeight) {
+        if (p.y > fixedHeight) {
           p.y = -10;
-          p.x = Math.random() * window.innerWidth;
+          p.x = Math.random() * fixedWidth;
         }
-        if (p.x < 0) p.x = window.innerWidth;
-        if (p.x > window.innerWidth) p.x = 0;
+        if (p.x < 0) p.x = fixedWidth;
+        if (p.x > fixedWidth) p.x = 0;
         
         ctx.fillStyle = `rgba(255, 255, 255, ${p.opacity})`;
         ctx.beginPath();
@@ -220,8 +224,8 @@ function SnowOverlay() {
     };
 
     const resize = () => { 
-      canvas.width = window.innerWidth; 
-      canvas.height = window.innerHeight; 
+      canvas.width = fixedWidth; 
+      canvas.height = fixedHeight; 
     };
     
     window.addEventListener('resize', resize);
@@ -254,10 +258,14 @@ function Snowfall() {
     const ctx = canvas.getContext('2d', { alpha: true });
     if (!ctx) return;
     
+    // Fix initial screen size to prevent keyboard resize issues
+    const fixedWidth = window.innerWidth;
+    const fixedHeight = window.innerHeight;
+    
     const count = 200;
     const particles = Array.from({ length: count }, () => ({
-      x: Math.random() * window.innerWidth,
-      y: Math.random() * window.innerHeight,
+      x: Math.random() * fixedWidth,
+      y: Math.random() * fixedHeight,
       vy: Math.random() * 0.6 + 0.2,
       vx: (Math.random() - 0.5) * 0.1,
       radius: Math.random() * 2.5 + 0.5,
@@ -271,12 +279,12 @@ function Snowfall() {
         p.y += p.vy;
         p.x += p.vx;
         
-        if (p.y > window.innerHeight) {
+        if (p.y > fixedHeight) {
           p.y = -10;
-          p.x = Math.random() * window.innerWidth;
+          p.x = Math.random() * fixedWidth;
         }
-        if (p.x < 0) p.x = window.innerWidth;
-        if (p.x > window.innerWidth) p.x = 0;
+        if (p.x < 0) p.x = fixedWidth;
+        if (p.x > fixedWidth) p.x = 0;
         
         ctx.fillStyle = `rgba(255, 255, 255, ${p.opacity})`;
         ctx.beginPath();
@@ -287,8 +295,8 @@ function Snowfall() {
     };
 
     const resize = () => { 
-      canvas.width = window.innerWidth; 
-      canvas.height = window.innerHeight; 
+      canvas.width = fixedWidth; 
+      canvas.height = fixedHeight; 
     };
     
     window.addEventListener('resize', resize);
