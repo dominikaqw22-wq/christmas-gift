@@ -224,29 +224,10 @@ function SnowOverlay() {
       canvas.height = window.innerHeight; 
     };
     
-    // Fix mobile viewport resize (especially keyboard)
-    const handleVisualViewportResize = () => {
-      if (window.visualViewport) {
-        canvas.width = window.visualViewport.width;
-        canvas.height = window.visualViewport.height;
-      } else {
-        resize();
-      }
-    };
-    
     window.addEventListener('resize', resize);
-    if (window.visualViewport) {
-      window.visualViewport.addEventListener('resize', handleVisualViewportResize);
-    }
     resize(); 
     loop();
-    
-    return () => {
-      window.removeEventListener('resize', resize);
-      if (window.visualViewport) {
-        window.visualViewport.removeEventListener('resize', handleVisualViewportResize);
-      }
-    };
+    return () => window.removeEventListener('resize', resize);
   }, []);
   
   return (
@@ -310,29 +291,10 @@ function Snowfall() {
       canvas.height = window.innerHeight; 
     };
     
-    // Fix mobile viewport resize (especially keyboard)
-    const handleVisualViewportResize = () => {
-      if (window.visualViewport) {
-        canvas.width = window.visualViewport.width;
-        canvas.height = window.visualViewport.height;
-      } else {
-        resize();
-      }
-    };
-    
     window.addEventListener('resize', resize);
-    if (window.visualViewport) {
-      window.visualViewport.addEventListener('resize', handleVisualViewportResize);
-    }
     resize(); 
     loop();
-    
-    return () => {
-      window.removeEventListener('resize', resize);
-      if (window.visualViewport) {
-        window.visualViewport.removeEventListener('resize', handleVisualViewportResize);
-      }
-    };
+    return () => window.removeEventListener('resize', resize);
   }, []);
   
   return (
