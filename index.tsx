@@ -951,6 +951,29 @@ function App() {
     }
   }, [unlocked]);
 
+  // Pause music when tab loses focus (mobile)
+  React.useEffect(() => {
+    const isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    if (!isMobileDevice) return;
+
+    const handleVisibilityChange = () => {
+      if (!audioRef.current) return;
+      
+      if (document.hidden) {
+        // Tab is hidden - pause music
+        audioRef.current.pause();
+      } else {
+        // Tab is visible again - resume if not muted
+        if (!isMuted) {
+          audioRef.current.play().catch(() => {});
+        }
+      }
+    };
+
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    return () => document.removeEventListener('visibilitychange', handleVisibilityChange);
+  }, [isMuted]);
+
   const playClick = () => {
     // Click sound removed
   };
