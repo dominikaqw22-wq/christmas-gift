@@ -593,7 +593,7 @@ function AvatarJourney({ currentSlide, avatarsFadingOut }: { currentSlide: numbe
   if (isFinal) {
     return (
       <div style={{ position: 'relative', width: '100%', maxWidth: '100vw', height: isMobile ? 'clamp(280px, 42vh, 420px)' : 'clamp(520px, 70vh, 720px)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '0', marginTop: isMobile ? 'clamp(0.5rem, 2vh, 1.5rem)' : 'clamp(2rem, 6vh, 4rem)', padding: '0', overflow: 'visible' }}>
-        <div className="parallax-slow" style={{ position: 'relative', width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <div className="parallax-slow" style={{ position: 'relative', width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'visible' }}>
           <div style={{ position: 'relative', width: isMobile ? 'clamp(280px, 75vw, 380px)' : 'clamp(420px, 80vw, 620px)', height: isMobile ? 'clamp(280px, 75vw, 380px)' : 'clamp(420px, 80vw, 620px)', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'visible' }}>
             {/* On mobile render the together image fixed so its glow isn't clipped */}
             {isMobile ? (
@@ -607,12 +607,6 @@ function AvatarJourney({ currentSlide, avatarsFadingOut }: { currentSlide: numbe
                 <img src={ASSETS.TOGETHER} alt="Together" className="animate-comfy-float animate-fade-in-final" draggable={false} style={{ width: '100%', height: '100%', objectFit: 'contain', filter: 'drop-shadow(0 0 60px rgba(255,0,0,0.7)) drop-shadow(0 0 100px rgba(255,0,0,0.5)) drop-shadow(0 0 160px rgba(255,0,0,0.4))', WebkitUserDrag: 'none', position: 'relative', zIndex: 1 }} />
               </>
             )}
-          </div>
-          <div className="animate-fade-in-final" style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-start', zIndex: 230, paddingTop: isMobile ? 'clamp(160px, 48%, 220px)' : 'clamp(240px, 55%, 320px)', gap: '0.25rem', pointerEvents: 'none' }}>
-            <div className="animate-gentle-float" style={{ fontSize: isMobile ? 'clamp(1.1rem, 4vw, 1.4rem)' : 'clamp(1.2rem, 4.2vw, 1.6rem)', fontFamily: 'Geist, sans-serif', fontWeight: isMobile ? '400' : '600', color: 'rgba(255, 255, 255, 0.95)', letterSpacing: '0.05em', textAlign: 'center', textShadow: '0 0 15px rgba(255, 255, 255, 0.6)', padding: '0 1rem' }}>Merry Christmas</div>
-            <div className="animate-gentle-float" style={{ transition: 'margin 0.1s ease-out', animationDelay: '0.3s' }}>
-              <div className="animate-glow-pulse" style={{ fontSize: isMobile ? 'clamp(1.8rem, 6.5vw, 2.8rem)' : 'clamp(2rem, 6.5vw, 3rem)', fontFamily: 'Geist, sans-serif', fontWeight: isMobile ? '700' : '800', color: 'rgba(255,255,255,1)', letterSpacing: '-0.02em', textAlign: 'center', padding: '0 1rem' }}>MY SPOOKY LOVE!</div>
-            </div>
           </div>
         </div>
       </div>
@@ -670,43 +664,6 @@ function GiftCard({ code, onCopy }: { code: string; onCopy: () => void }) {
         boxSizing: 'border-box'
       }}
     >
-      <div
-        style={{
-          position: 'absolute',
-          left: '50%',
-          transform: 'translateX(-50%)',
-          bottom: '10%',
-          width: 'min(95vw, 520px)',
-          minWidth: '140px',
-          height: '3.2em',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          padding: '0 clamp(0.5rem, 2vw, 1rem)'
-        }}
-      >
-        <div style={{
-          width: '100%',
-          height: '100%',
-          display: 'flex',
-          flexDirection: 'row',
-          alignItems: 'center',
-          justifyContent: 'center',
-          gap: 'clamp(0.5rem, 2vw, 1rem)',
-          fontFamily: 'inherit',
-          fontWeight: '500',
-          letterSpacing: '0.02em',
-          color: 'white',
-          userSelect: 'none',
-          WebkitUserSelect: 'none',
-          background: 'transparent',
-          padding: 'clamp(0.5rem, 1vw, 1rem)',
-          fontSize: 'clamp(1rem, 2.5vw, 1.4rem)',
-          textAlign: 'center'
-        }}>
-          💌 I need your email, dm me! u.u
-        </div>
-      </div>
     </div>
   );
 }
@@ -778,7 +735,7 @@ function FloatingBalloon({ onClick, show }: { onClick: () => void; show: boolean
           }}>
           <img 
             src={ExtraGiftImg} 
-            alt="Extra Gift"
+            alt=999tra Gift"
             style={{
               width: '100%',
               height: '100%',
