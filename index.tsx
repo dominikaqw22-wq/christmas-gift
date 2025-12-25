@@ -851,6 +851,23 @@ function App() {
     return () => window.removeEventListener('keydown', handleEscClose);
   }, [showExtraModal]);
 
+  // Preload all important images
+  React.useEffect(() => {
+    const imagesToPreload = [
+      ...ASSETS.ME,
+      ...ASSETS.HER,
+      ASSETS.TOGETHER,
+      ExtraGiftImg,
+      CatGif,
+      GCBackground
+    ];
+
+    imagesToPreload.forEach(src => {
+      const img = new Image();
+      img.src = src;
+    });
+  }, []);
+
   React.useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
       if (volumeMenuRef.current && !volumeMenuRef.current.contains(e.target as Node)) {
