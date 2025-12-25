@@ -621,7 +621,7 @@ function AvatarJourney({ currentSlide, avatarsFadingOut }: { currentSlide: numbe
   }
 
   return (
-    <div style={{ position: 'relative', width: '100%', height: isMobile ? 'clamp(280px, 40vh, 360px)' : '288px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: isMobile ? '0' : '0.5rem', opacity: avatarsFadingOut ? 0 : 1, transition: 'opacity 0.8s ease-out', overflow: 'visible' }}>
+    <div style={{ position: 'relative', width: '100%', height: isMobile ? 'clamp(240px, 32vh, 300px)' : '288px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: isMobile ? '-3vh' : '0', marginBottom: isMobile ? '-1.5vh' : '0.5rem', opacity: avatarsFadingOut ? 0 : 1, transition: 'opacity 0.8s ease-out', overflow: 'visible' }}>
       <div style={{ position: 'relative', width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', overflow: 'visible' }}>
         <div style={{ position: 'absolute', height: '1px', background: 'linear-gradient(to right, transparent, rgba(255,255,255,0.2), transparent)', opacity: 0.2, width: `${initialDist * 2.4}px` }} />
 
@@ -1224,7 +1224,8 @@ function App() {
           opacity: currentSlide === 0 && !showSlide0Elements ? 0 : 1,
           transform: currentSlide === 0 && !showSlide0Elements ? 'translateY(-20px)' : 'translateY(0)',
           transition: 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)',
-          pointerEvents: currentSlide === 0 && !showSlide0Elements ? 'none' : 'auto'
+          pointerEvents: currentSlide === 0 && !showSlide0Elements ? 'none' : 'auto',
+          marginTop: isMobileView ? '-2vh' : '0'
         }}>
           <AvatarJourney currentSlide={currentSlide} avatarsFadingOut={avatarsFadingOut} />
         </div>
