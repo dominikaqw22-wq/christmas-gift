@@ -533,11 +533,18 @@ function AvatarJourney({ currentSlide, avatarsFadingOut }: { currentSlide: numbe
   const initialDist = isMobile ? 300 : 280;
 
   const totalSlides = total;
-  // Ambos desktop e mobile se aproximam do slide 0 até penúltimo slide
-  const denom = Math.max(1, totalSlides - 2);
   
-  const approachProgress = Math.min(currentSlide / denom, 1);
-  const approachProgressMobile = approachProgress;
+  // Cálculo específico para desktop: começa no slide 0 e vai até o penúltimo
+  // Desktop usa progressão mais agressiva para garantir aproximação visível
+  const desktopDenom = Math.max(1, totalSlides - 2);
+  const desktopProgress = Math.min(currentSlide / desktopDenom, 1);
+  
+  // Mobile usa mesma lógica
+  const mobileDenom = Math.max(1, totalSlides - 2);
+  const mobileProgress = Math.min(currentSlide / mobileDenom, 1);
+  
+  const approachProgress = isMobile ? mobileProgress : desktopProgress;
+  const approachProgressMobile = mobileProgress;
 
   // Avatar sizing and gaps
   const avatarRenderedWidth = Math.min(Math.max(140, viewportWidth * (isMobile ? 0.36 : 0.4)), 230);
@@ -545,10 +552,16 @@ function AvatarJourney({ currentSlide, avatarsFadingOut }: { currentSlide: numbe
   const centerX = viewportWidth / 2;
   const maxAllowedGap = Math.max(0, 2 * (centerX - (sidePadding + avatarRenderedWidth / 2)));
 
-  // Safe minimum distance on mobile to prevent characters overlapping
-  const safeMinDistance = isMobile ? Math.max(120, Math.floor(viewportWidth * 0.22)) : Math.max(180, Math.floor(viewportWidth * 0.28));
+  // Safe minimum distance - desktop usa valor mais baixo para permitir maior aproximação
+  const safeMinDistance = isMobile 
+    ? Math.max(120, Math.floor(viewportWidth * 0.22)) 
+    : Math.max(160, Math.floor(viewportWidth * 0.18)); // Desktop: mais próximo
+    
   const minCenterGap = safeMinDistance;
-  const initialCenterGap = initialDist * 1.6;
+  
+  // Desktop começa mais afastado para ter range maior de aproximação
+  const initialCenterGap = isMobile ? initialDist * 1.6 : initialDist * 2.2;
+  
   const effectiveInitialGap = Math.min(initialCenterGap, maxAllowedGap || initialCenterGap);
   const progressForGap = isMobile ? approachProgressMobile : approachProgress;
   const currentGap = isFinal ? 0 : Math.round(Math.max(minCenterGap, effectiveInitialGap - (effectiveInitialGap - minCenterGap) * progressForGap));
