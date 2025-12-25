@@ -18,7 +18,6 @@ import {
   Minus
 } from 'lucide-react';
 
-// Import assets
 import DominikNeutral from './Characters/Dominik_Neutral.png';
 import DominikHappy from './Characters/Dominik_Happy.png';
 import DominikHappier from './Characters/Dominik_Happier.png';
@@ -137,7 +136,6 @@ function RedParticles({ centerX, centerY }: { centerX?: number; centerY?: number
           p.life = 1;
         }
         
-        // Fade out mais suave conforme a partícula se afasta
         const fadeOut = Math.max(0, p.life * p.life); // Quadrático para fade out mais suave
         const red = 255;
         const green = Math.floor(30 + fadeOut * 30);
@@ -187,7 +185,6 @@ function SnowOverlay() {
     const ctx = canvas.getContext('2d', { alpha: true });
     if (!ctx) return;
     
-    // Fix initial screen size to prevent keyboard resize issues
     const fixedWidth = window.innerWidth;
     const fixedHeight = window.innerHeight;
     
@@ -258,7 +255,6 @@ function Snowfall() {
     const ctx = canvas.getContext('2d', { alpha: true });
     if (!ctx) return;
     
-    // Fix initial screen size to prevent keyboard resize issues
     const fixedWidth = window.innerWidth;
     const fixedHeight = window.innerHeight;
     
@@ -562,39 +558,32 @@ function AvatarJourney({ currentSlide, avatarsFadingOut }: { currentSlide: numbe
 
   const totalSlides = total;
   
-  // Cálculo específico para desktop: começa no slide 0 e vai até o penúltimo
-  // Desktop usa progressão mais agressiva para garantir aproximação visível
   const desktopDenom = Math.max(1, totalSlides - 2);
   const desktopProgress = Math.min(currentSlide / desktopDenom, 1);
   
-  // Mobile usa mesma lógica
   const mobileDenom = Math.max(1, totalSlides - 2);
   const mobileProgress = Math.min(currentSlide / mobileDenom, 1);
   
   const approachProgress = isMobile ? mobileProgress : desktopProgress;
   const approachProgressMobile = mobileProgress;
 
-  // Avatar sizing and gaps
   const avatarRenderedWidth = Math.min(Math.max(140, viewportWidth * (isMobile ? 0.36 : 0.4)), 230);
   const sidePadding = Math.max(12, viewportWidth * 0.04);
   const centerX = viewportWidth / 2;
   const maxAllowedGap = Math.max(0, 2 * (centerX - (sidePadding + avatarRenderedWidth / 2)));
 
-  // Safe minimum distance - desktop usa valor mais baixo para permitir maior aproximação
   const safeMinDistance = isMobile 
     ? Math.max(120, Math.floor(viewportWidth * 0.22)) 
-    : Math.max(160, Math.floor(viewportWidth * 0.18)); // Desktop: mais próximo
+    : Math.max(160, Math.floor(viewportWidth * 0.18));
     
   const minCenterGap = safeMinDistance;
   
-  // Desktop começa mais afastado para ter range maior de aproximação
   const initialCenterGap = isMobile ? initialDist * 1.6 : initialDist * 2.2;
   
   const effectiveInitialGap = Math.min(initialCenterGap, maxAllowedGap || initialCenterGap);
   const progressForGap = isMobile ? approachProgressMobile : approachProgress;
   const currentGap = isFinal ? 0 : Math.round(Math.max(minCenterGap, effectiveInitialGap - (effectiveInitialGap - minCenterGap) * progressForGap));
 
-  // Debug output in dev
   if (typeof window !== 'undefined' && (window as any).console && process.env.NODE_ENV !== 'production') {
     console.debug('[AvatarJourney]', { currentSlide, total, isMobile, viewportWidth, approachProgress, approachProgressMobile, currentGap, maxAllowedGap, avatarRenderedWidth });
   }
@@ -689,10 +678,8 @@ function FloatingBalloon({ onClick, show }: { onClick: () => void; show: boolean
   const [imageLoaded, setImageLoaded] = React.useState(false);
 
   React.useEffect(() => {
-    // Preload ExtraGift image immediately
     const img = new Image();
     img.onload = () => {
-      // Add small delay to ensure image is fully rendered
       setTimeout(() => setImageLoaded(true), 50);
     };
     img.src = ExtraGiftImg;
@@ -720,7 +707,6 @@ function FloatingBalloon({ onClick, show }: { onClick: () => void; show: boolean
       className="animate-gentle-float"
       style={{
         position: isMobileView ? 'fixed' : 'absolute',
-        // Keep balloon visible above envelope, relative to parent container
         right: isMobileView ? 'clamp(1%, 2vw, 4%)' : 'clamp(8%, 10vw, 14%)',
         top: isMobileView ? 'clamp(35vh, 40vh, 45vh)' : 'clamp(-80px, -10vh, -60px)',
         cursor: 'pointer',
@@ -848,7 +834,6 @@ function App() {
     return () => window.removeEventListener('keydown', handleEscClose);
   }, [showExtraModal]);
 
-  // Preload all important images
   React.useEffect(() => {
     const imagesToPreload = [
       ...ASSETS.ME,
@@ -971,7 +956,6 @@ function App() {
     }
   }, [unlocked]);
 
-  // Pause music when tab loses focus (mobile)
   React.useEffect(() => {
     const isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
     if (!isMobileDevice) return;
@@ -980,10 +964,8 @@ function App() {
       if (!audioRef.current) return;
       
       if (document.hidden) {
-        // Tab is hidden - pause music
         audioRef.current.pause();
       } else {
-        // Tab is visible again - resume if not muted
         if (!isMuted) {
           audioRef.current.play().catch(() => {});
         }
@@ -994,9 +976,7 @@ function App() {
     return () => document.removeEventListener('visibilitychange', handleVisibilityChange);
   }, [isMuted]);
 
-  const playClick = () => {
-    // Click sound removed
-  };
+  const playClick = () => {};
 
   const handleNext = () => {
     playClick();

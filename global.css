@@ -493,13 +493,12 @@ body {
   animation: glow-pulse 3s ease-in-out infinite;
 }
 
-/* Hide scrollbar for extra modal and make scroll behavior invisible */
 .extra-modal {
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 .extra-modal::-webkit-scrollbar {
-  display: none; /* WebKit */
+  display: none;
 }
 
 .animate-fade-in-final {
@@ -546,9 +545,6 @@ body {
 }
 
 @media (max-width: 768px) {
-  /* Keep parallax disabled on very small screens, but allow
-     per-character transforms applied inline in JS (don't force
-     `transform: none !important` which overrides inline styles). */
   .parallax-slow {
     transform: none !important;
   }
@@ -600,7 +596,6 @@ body {
   }
 }
 
-/* Hide scrollbars globally while keeping scroll functionality */
 * {
   scrollbar-width: none;
   -ms-overflow-style: none;
