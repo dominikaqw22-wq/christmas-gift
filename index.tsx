@@ -515,6 +515,17 @@ function AvatarJourney({ currentSlide, avatarsFadingOut }: { currentSlide: numbe
   const total = SLIDES.length;
   const isFinal = currentSlide === total - 1;
 
+  const sceneScale = React.useMemo(() => {
+    if (typeof window === 'undefined') return 1;
+    const vw = window.innerWidth;
+    const vh = window.innerHeight;
+    const baseW = 440;
+    const baseH = 720;
+    const scaleW = vw / baseW;
+    const scaleH = vh / baseH;
+    return Math.min(1, Math.min(scaleW, scaleH));
+  }, []);
+
   const [viewportWidth, setViewportWidth] = React.useState<number>(() => typeof window !== 'undefined' ? window.innerWidth : 1024);
   const resizeTimeout = React.useRef<number | null>(null);
   React.useEffect(() => {
@@ -581,12 +592,12 @@ function AvatarJourney({ currentSlide, avatarsFadingOut }: { currentSlide: numbe
 
   if (isFinal) {
     return (
-      <div style={{ position: 'relative', width: '100%', height: isMobile ? 'clamp(520px, 78vh, 860px)' : 'clamp(620px, 82vh, 920px)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: isMobile ? '1.5rem' : '2rem', marginTop: isMobile ? 'clamp(1rem, 4vh, 3rem)' : 'clamp(2rem, 6vh, 4rem)', padding: isMobile ? '0 0.5rem' : '0 1rem', overflow: 'visible' }}>
-        <div className="parallax-slow" style={{ position: 'relative', width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-          <div style={{ position: 'relative', width: 'clamp(420px, 86vw, 680px)', height: 'clamp(420px, 86vw, 680px)', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'visible' }}>
+      <div style={{ position: 'relative', width: '100%', maxWidth: '100vw', height: isMobile ? 'clamp(520px, 78vh, 860px)' : 'clamp(620px, 82vh, 920px)', maxHeight: 'calc(100vh - 80px)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: isMobile ? '1.5rem' : '2rem', marginTop: isMobile ? 'clamp(1rem, 4vh, 3rem)' : 'clamp(2rem, 6vh, 4rem)', padding: isMobile ? '0 0.5rem' : '0 1rem', overflow: 'visible' }}>
+        <div className="parallax-slow" style={{ position: 'relative', width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', transform: `scale(${sceneScale})`, transformOrigin: 'center center' }}>
+          <div style={{ position: 'relative', width: 'clamp(360px, 82vw, 620px)', height: 'clamp(360px, 82vw, 620px)', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'visible' }}>
             {/* On mobile render the together image fixed so its glow isn't clipped by ancestor overflow:hidden */}
             {isMobile ? (
-              <div style={{ position: 'fixed', left: '50%', top: '8%', transform: 'translate(-50%, 0)', width: 'clamp(420px, 90vw, 750px)', height: 'clamp(420px, 90vw, 750px)', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'visible', zIndex: 220 }}>
+              <div style={{ position: 'fixed', left: '50%', top: '10%', transform: 'translate(-50%, 0)', width: 'clamp(360px, 88vw, 680px)', height: 'clamp(360px, 88vw, 680px)', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'visible', zIndex: 220 }}>
                 <RedParticles />
                 <img src={ASSETS.TOGETHER} alt="Together" className="animate-comfy-float animate-fade-in-final" draggable={false} style={{ width: '100%', height: '100%', objectFit: 'contain', filter: 'drop-shadow(0 0 80px rgba(255,0,0,0.8)) drop-shadow(0 0 140px rgba(255,0,0,0.6)) drop-shadow(0 0 200px rgba(255,0,0,0.45))', WebkitUserDrag: 'none', position: 'relative', zIndex: 221 }} />
               </div>
@@ -726,9 +737,9 @@ function FloatingBalloon({ onClick, show }: { onClick: () => void; show: boolean
       className="animate-gentle-float"
       style={{
         position: 'absolute',
-        // Keep balloon fully visible; bias to bottom-right on mobile
-        right: isMobileView ? 'clamp(4%, 8vw, 12%)' : 'clamp(6%, 10vw, 14%)',
-        top: isMobileView ? 'clamp(18%, 24vh, 30%)' : 'clamp(10%, 14vh, 18%)',
+        // Keep balloon fully visible above envelope/gift card
+        right: isMobileView ? 'clamp(6%, 10vw, 14%)' : 'clamp(8%, 10vw, 14%)',
+        top: isMobileView ? 'clamp(6vh, 10vh, 14vh)' : 'clamp(8vh, 12vh, 16vh)',
         cursor: 'pointer',
         zIndex: 50,
         display: 'flex',
