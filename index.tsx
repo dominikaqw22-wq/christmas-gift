@@ -18,21 +18,36 @@ import {
   Minus
 } from 'lucide-react';
 
+// Import assets
+import DominikNeutral from './Characters/Dominik_Neutral.png';
+import DominikHappy from './Characters/Dominik_Happy.png';
+import DominikHappier from './Characters/Dominik_Happier.png';
+import DominikSuperHappy from './Characters/Dominik_SuperHappy.png';
+import StarNeutral from './Characters/Star_Neutral.png';
+import StarHappy from './Characters/Star_Happy.png';
+import StarHappier from './Characters/Star_Happier.png';
+import StarSuperHappy from './Characters/Star_SuperHappy.png';
+import DominikStarTogether from './Characters/DominikStarTogether.png';
+import ChristmasAudio from './Audio/Snow Days - Christmas Lofi & Jazzhop.mp3';
+import ClickSfx from './Audio/click.mp3';
+import ExtraGiftImg from './Images/ExtraGift.png';
+import CatGif from './Images/cat.gif';
+
 const ASSETS = {
   ME: [
-    "Characters/Dominik_Neutral.png",
-    "Characters/Dominik_Happy.png",
-    "Characters/Dominik_Happier.png",
-    "Characters/Dominik_SuperHappy.png",
+    DominikNeutral,
+    DominikHappy,
+    DominikHappier,
+    DominikSuperHappy,
   ],
   HER: [
-    "Characters/Star_Neutral.png",
-    "Characters/Star_Happy.png",
-    "Characters/Star_Happier.png",
-    "Characters/Star_SuperHappy.png",
+    StarNeutral,
+    StarHappy,
+    StarHappier,
+    StarSuperHappy,
   ],
-  TOGETHER: "Characters/DominikStarTogether.png",
-  AUDIO: "./Audio/Snow Days - Christmas Lofi & Jazzhop.mp3",
+  TOGETHER: DominikStarTogether,
+  AUDIO: ChristmasAudio,
 };
 
 const GIFT_CODE = "AMZN-XM25-REVEAL-500";
@@ -735,7 +750,7 @@ function FloatingBalloon({ onClick, show }: { onClick: () => void; show: boolean
             filter: 'drop-shadow(0 0 6px #8528ee) drop-shadow(0 0 12px rgba(133, 40, 238, 0.2))'
           }}>
           <img 
-            src="Images/ExtraGift.png" 
+            src={ExtraGiftImg} 
             alt="Extra Gift"
             style={{
               width: '100%',
@@ -1040,7 +1055,7 @@ function App() {
       </div>
       
       <audio ref={audioRef} src={ASSETS.AUDIO} loop />
-      <audio ref={clickSfxRef} src="./Audio/click.mp3" preload="auto" />
+      <audio ref={clickSfxRef} src={ClickSfx} preload="auto" />
       
       <div style={{
         position: 'fixed',
@@ -1915,7 +1930,7 @@ function App() {
                   gap: '2rem'
                 }}>
                   <img 
-                    src="Images/cat.gif" 
+                    src={CatGif} 
                     alt="Cat" 
                     style={{
                       width: '240px',

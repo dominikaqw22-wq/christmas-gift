@@ -8,13 +8,10 @@ export default defineConfig({
     host: '0.0.0.0',
   },
   plugins: [react()],
-  publicDir: 'public',
-  assetsInclude: ['**/*.png', '**/*.gif', '**/*.ico', '**/*.mp3'],
   build: {
     commonjsOptions: {
       include: [/node_modules/],
       transformMixedEsModules: true,
-    },
-    copyPublicDir: true,
+    }
   }
 });
