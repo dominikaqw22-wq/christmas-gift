@@ -90,12 +90,12 @@ function RedParticles() {
     const ctx = canvas.getContext('2d', { alpha: true });
     if (!ctx) return;
     
-    canvas.width = 580;
-    canvas.height = 580;
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
     
     const count = 220;
-    const centerX = 290;
-    const centerY = 290;
+    const centerX = canvas.width / 2;
+    const centerY = canvas.height / 2;
     
     const particles = Array.from({ length: count }, () => {
       const angle = Math.random() * Math.PI * 2;
@@ -153,18 +153,14 @@ function RedParticles() {
   return (
     <canvas 
       ref={canvasRef}
-      width={580}
-      height={580}
       style={{
-        position: 'absolute',
-        width: '100%',
-        height: '100%',
+        position: 'fixed',
+        width: '100vw',
+        height: '100vh',
+        top: 0,
+        left: 0,
         pointerEvents: 'none',
-        zIndex: 0,
-        left: '50%',
-        top: '50%',
-        transform: 'translate(-50%, -50%)',
-        opacity: 0
+        zIndex: 0
       }}
     />
   );
@@ -599,10 +595,12 @@ function AvatarJourney({ currentSlide, avatarsFadingOut }: { currentSlide: numbe
             {/* On mobile render the together image fixed so its glow isn't clipped */}
             {isMobile ? (
               <div style={{ position: 'fixed', left: '50%', top: '8%', transform: 'translate(-50%, 0)', width: 'clamp(280px, 75vw, 380px)', height: 'clamp(280px, 75vw, 380px)', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'visible', zIndex: 220, pointerEvents: 'none' }}>
+                <RedParticles />
                 <img src={ASSETS.TOGETHER} alt="Together" className="animate-comfy-float animate-fade-in-final" draggable={false} style={{ width: '100%', height: '100%', objectFit: 'contain', filter: 'drop-shadow(0 0 60px rgba(255,0,0,0.6)) drop-shadow(0 0 100px rgba(255,0,0,0.4)) drop-shadow(0 0 140px rgba(255,0,0,0.3))', WebkitUserDrag: 'none', position: 'relative', zIndex: 221 }} />
               </div>
             ) : (
               <>
+                <RedParticles />
                 <img src={ASSETS.TOGETHER} alt="Together" className="animate-comfy-float animate-fade-in-final" draggable={false} style={{ width: '100%', height: '100%', objectFit: 'contain', filter: 'drop-shadow(0 0 60px rgba(255,0,0,0.7)) drop-shadow(0 0 100px rgba(255,0,0,0.5)) drop-shadow(0 0 160px rgba(255,0,0,0.4))', WebkitUserDrag: 'none', position: 'relative', zIndex: 1 }} />
               </>
             )}
@@ -695,7 +693,7 @@ function FloatingBalloon({ onClick, show }: { onClick: () => void; show: boolean
         position: isMobileView ? 'fixed' : 'absolute',
         // Keep balloon visible above envelope, relative to parent container
         right: isMobileView ? 'clamp(8%, 12vw, 18%)' : 'clamp(8%, 10vw, 14%)',
-        top: isMobileView ? 'clamp(55vh, 60vh, 65vh)' : 'clamp(-80px, -10vh, -60px)',
+        top: isMobileView ? 'clamp(8vh, 12vh, 16vh)' : 'clamp(-80px, -10vh, -60px)',
         cursor: 'pointer',
         zIndex: 270,
         display: 'flex',
