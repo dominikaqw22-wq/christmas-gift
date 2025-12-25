@@ -607,11 +607,11 @@ function AvatarJourney({ currentSlide, avatarsFadingOut }: { currentSlide: numbe
             {/* On mobile render the together image fixed so its glow isn't clipped */}
             {isMobile ? (
               <div style={{ position: 'fixed', left: '50%', top: 'clamp(4%, 6%, 8%)', transform: 'translate(-50%, 0)', width: 'clamp(360px, 85vw, 460px)', height: 'clamp(360px, 85vw, 460px)', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'visible', zIndex: 220, pointerEvents: 'none' }}>
-                <img src={ASSETS.TOGETHER} alt="Together" className="animate-comfy-float animate-fade-in-final" draggable={false} style={{ width: '100%', height: '100%', objectFit: 'contain', filter: 'drop-shadow(0 0 40px rgba(255,0,0,0.5)) drop-shadow(0 0 80px rgba(255,0,0,0.3))', WebkitUserDrag: 'none', position: 'relative', zIndex: 221 }} />
+                <img src={ASSETS.TOGETHER} alt="Together" className="animate-comfy-float animate-fade-in-final" draggable={false} style={{ width: '100%', height: '100%', objectFit: 'contain', WebkitUserDrag: 'none', position: 'relative', zIndex: 221 }} />
               </div>
             ) : (
               <>
-                <img src={ASSETS.TOGETHER} alt="Together" className="animate-comfy-float animate-fade-in-final" draggable={false} style={{ width: '100%', height: '100%', objectFit: 'contain', filter: 'drop-shadow(0 0 50px rgba(255,0,0,0.6)) drop-shadow(0 0 100px rgba(255,0,0,0.4))', WebkitUserDrag: 'none', position: 'relative', zIndex: 1 }} />
+                <img src={ASSETS.TOGETHER} alt="Together" className="animate-comfy-float animate-fade-in-final" draggable={false} style={{ width: '100%', height: '100%', objectFit: 'contain', WebkitUserDrag: 'none', position: 'relative', zIndex: 1 }} />
               </>
             )}
           </div>
