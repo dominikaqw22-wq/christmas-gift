@@ -755,14 +755,12 @@ function FloatingBalloon({ onClick, show }: { onClick: () => void; show: boolean
             alignItems: 'center',
             justifyContent: 'center',
             position: 'relative',
-            transition: 'all 0.3s ease',
-            filter: 'drop-shadow(0 0 6px #8528ee) drop-shadow(0 0 12px rgba(133, 40, 238, 0.2))',
-            opacity: imageLoaded ? 1 : 0
+            transition: 'filter 0.3s ease',
+            filter: 'drop-shadow(0 0 6px #8528ee) drop-shadow(0 0 12px rgba(133, 40, 238, 0.2))'
           }}>
           <img 
             src={ExtraGiftImg} 
             alt="Extra Gift"
-            onLoad={() => setImageLoaded(true)}
             style={{
               width: '100%',
               height: '100%',
