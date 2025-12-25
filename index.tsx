@@ -163,7 +163,8 @@ function RedParticles() {
         zIndex: 0,
         left: '50%',
         top: '50%',
-        transform: 'translate(-50%, -50%)'
+        transform: 'translate(-50%, -50%)',
+        opacity: 0
       }}
     />
   );
@@ -944,7 +945,7 @@ function App() {
 
   const playClick = () => {
     if (clickSfxRef.current) {
-      clickSfxRef.current.volume = 0.08;
+      clickSfxRef.current.volume = 0;
       clickSfxRef.current.currentTime = 0;
       clickSfxRef.current.play().catch(() => {});
     }
