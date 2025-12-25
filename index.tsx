@@ -1286,7 +1286,7 @@ function App() {
            flexDirection: 'column',
            alignItems: 'center',
            justifyContent: 'flex-start',
-           paddingTop: isMobileView ? 'clamp(0.25rem, 1.5vw, 0.75rem)' : 'clamp(1.5rem, 5vw, 3rem)',
+           paddingTop: isMobileView ? 'clamp(2rem, 5vh, 3rem)' : 'clamp(1.5rem, 5vw, 3rem)',
            paddingLeft: isMobileView ? '0.25rem' : '0.5rem',
            paddingRight: isMobileView ? '0.25rem' : '0.5rem',
            boxSizing: 'border-box',
