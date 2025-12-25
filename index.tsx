@@ -735,7 +735,7 @@ function FloatingBalloon({ onClick, show }: { onClick: () => void; show: boolean
           }}>
           <img 
             src={ExtraGiftImg} 
-            alt=999tra Gift"
+            alt="Extra Gift"
             style={{
               width: '100%',
               height: '100%',
