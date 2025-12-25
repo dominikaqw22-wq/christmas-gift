@@ -581,7 +581,7 @@ function AvatarJourney({ currentSlide, avatarsFadingOut }: { currentSlide: numbe
 
   if (isFinal) {
     return (
-      <div style={{ position: 'relative', width: '100%', height: 'clamp(380px, 50vh, 480px)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '0.5rem', marginTop: 'clamp(4rem, 10vh, 7.5rem)' }}>
+      <div style={{ position: 'relative', width: '100%', height: isMobile ? 'clamp(440px, 65vh, 720px)' : 'clamp(520px, 70vh, 800px)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1rem', marginTop: isMobile ? 'clamp(2rem, 6vh, 4rem)' : 'clamp(3rem, 8vh, 5rem)', overflow: 'visible' }}>
         <div className="parallax-slow" style={{ position: 'relative', width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <div style={{ position: 'relative', width: 'clamp(420px, 86vw, 680px)', height: 'clamp(420px, 86vw, 680px)', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'visible' }}>
             {/* On mobile render the together image fixed so its glow isn't clipped by ancestor overflow:hidden */}
@@ -726,9 +726,9 @@ function FloatingBalloon({ onClick, show }: { onClick: () => void; show: boolean
       className="animate-gentle-float"
       style={{
         position: 'absolute',
-        // On mobile push the extra gift higher and a bit more to the right edge
-        right: isMobileView ? '1%' : 'clamp(5%, 10vw, 15%)',
-        top: isMobileView ? '-28%' : 'clamp(10%, 12vh, 15%)',
+        // On mobile keep balloon inside viewport with safe offsets
+        right: isMobileView ? 'clamp(3%, 6vw, 10%)' : 'clamp(6%, 10vw, 14%)',
+        top: isMobileView ? 'clamp(6%, 10vh, 14%)' : 'clamp(8%, 12vh, 16%)',
         cursor: 'pointer',
         zIndex: 50,
         display: 'flex',
@@ -1229,8 +1229,10 @@ function App() {
 
       <main style={{
         width: '100%',
-        maxWidth: 'min(80rem, 100vw)',
-        padding: isMobileView ? 'clamp(0.5rem, 3vw, 0.75rem)' : 'clamp(0.75rem, 5vw, 1rem)',
+        maxWidth: isFinal ? '100vw' : 'min(80rem, 100vw)',
+        padding: isFinal
+          ? (isMobileView ? 'clamp(0.25rem, 2vw, 0.75rem)' : 'clamp(0.5rem, 3vw, 1rem)')
+          : (isMobileView ? 'clamp(0.5rem, 3vw, 0.75rem)' : 'clamp(0.75rem, 5vw, 1rem)'),
         margin: '0 auto',
         display: 'flex',
         flexDirection: 'column',
@@ -1580,7 +1582,7 @@ function App() {
                 </div>
             </>
           ) : (
-            <div style={{ position: 'relative', marginTop: '-4rem', width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '0 1rem', minHeight: '280px', justifyContent: 'flex-start', zIndex: 10 }}>
+            <div style={{ position: 'relative', marginTop: isMobileView ? '-1rem' : '-2rem', width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: isMobileView ? '0 0.75rem 3rem' : '0 1rem 3rem', minHeight: isMobileView ? 'min(70vh, 520px)' : 'min(70vh, 560px)', justifyContent: 'flex-start', zIndex: 10, overflow: 'visible' }}>
               <FloatingBalloon onClick={() => setShowExtraModal(true)} show={isFinal} />
               {unboxingStage < 4 ? (
                 <div 
@@ -1663,9 +1665,9 @@ function App() {
                       <div style={{ position: 'relative' }}>
                         {unboxingStage < 3 && (
                           <>
-                            <div style={{ position: 'absolute', inset: '-0.5rem', borderRadius: '9999px', border: '2px solid rgba(239, 68, 68, 0.4)', animation: 'seal-pulse-ring 3.5s cubic-bezier(0.4, 0, 0.6, 1) infinite backwards', zIndex: -1, opacity: 0 }} />
-                            <div style={{ position: 'absolute', inset: '-0.5rem', borderRadius: '9999px', border: '2px solid rgba(239, 68, 68, 0.4)', animation: 'seal-pulse-ring 3.5s cubic-bezier(0.4, 0, 0.6, 1) infinite 1.2s backwards', zIndex: -1, opacity: 0 }} />
-                            <div style={{ position: 'absolute', inset: '-0.5rem', borderRadius: '9999px', border: '2px solid rgba(239, 68, 68, 0.4)', animation: 'seal-pulse-ring 3.5s cubic-bezier(0.4, 0, 0.6, 1) infinite 2.4s backwards', zIndex: -1, opacity: 0 }} />
+                            <div style={{ position: 'absolute', inset: '-0.5rem', borderRadius: '9999px', border: '2px solid rgba(239, 68, 68, 0.4)', animation: 'seal-pulse-ring 3.5s cubic-bezier(0.4, 0, 0.6, 1) infinite backwards', zIndex: -1, opacity: unboxingStage < 3 ? 0.38 : 0 }} />
+                            <div style={{ position: 'absolute', inset: '-0.5rem', borderRadius: '9999px', border: '2px solid rgba(239, 68, 68, 0.4)', animation: 'seal-pulse-ring 3.5s cubic-bezier(0.4, 0, 0.6, 1) infinite 1.2s backwards', zIndex: -1, opacity: unboxingStage < 3 ? 0.32 : 0 }} />
+                            <div style={{ position: 'absolute', inset: '-0.5rem', borderRadius: '9999px', border: '2px solid rgba(239, 68, 68, 0.4)', animation: 'seal-pulse-ring 3.5s cubic-bezier(0.4, 0, 0.6, 1) infinite 2.4s backwards', zIndex: -1, opacity: unboxingStage < 3 ? 0.26 : 0 }} />
                           </>
                         )}
                         <div className="animate-seal-breathe" style={{
