@@ -535,9 +535,12 @@ function AvatarJourney({ currentSlide, avatarsFadingOut }: { currentSlide: numbe
   const mobileDenom = Math.max(1, totalSlides - 2);
   const desktopDenom = Math.max(1, totalSlides - 1);
   
-  // Desktop também começa no slide 0 agora
-  const approachProgress = Math.min(1, Math.max(0, currentSlide / desktopDenom));
-  const approachProgressMobile = isMobile ? Math.min(currentSlide / mobileDenom, 1) : approachProgress;
+  // Desktop e Mobile agora usam a mesma lógica - ambos começam do slide 0
+  const approachProgress = isMobile 
+    ? Math.min(currentSlide / mobileDenom, 1)
+    : Math.min(currentSlide / desktopDenom, 1);
+  
+  const approachProgressMobile = approachProgress;
 
   // Avatar sizing and gaps
   const avatarRenderedWidth = Math.min(Math.max(140, viewportWidth * (isMobile ? 0.36 : 0.4)), 230);
