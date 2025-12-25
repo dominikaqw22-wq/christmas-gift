@@ -606,12 +606,12 @@ function AvatarJourney({ currentSlide, avatarsFadingOut }: { currentSlide: numbe
           <div style={{ position: 'relative', width: isMobile ? 'clamp(260px, 70vw, 350px)' : 'clamp(420px, 80vw, 620px)', height: isMobile ? 'clamp(260px, 70vw, 350px)' : 'clamp(420px, 80vw, 620px)', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'visible' }}>
             {/* On mobile render the together image fixed so its glow isn't clipped */}
             {isMobile ? (
-              <div style={{ position: 'fixed', left: '50%', top: 'clamp(6%, 8%, 10%)', transform: 'translate(-50%, 0)', width: 'clamp(320px, 80vw, 420px)', height: 'clamp(320px, 80vw, 420px)', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'visible', zIndex: 220, pointerEvents: 'none' }}>
-                <img src={ASSETS.TOGETHER} alt="Together" className="animate-comfy-float animate-fade-in-final" draggable={false} style={{ width: '100%', height: '100%', objectFit: 'contain', WebkitUserDrag: 'none', position: 'relative', zIndex: 221 }} />
+              <div style={{ position: 'fixed', left: '50%', top: 'clamp(4%, 6%, 8%)', transform: 'translate(-50%, 0)', width: 'clamp(360px, 85vw, 460px)', height: 'clamp(360px, 85vw, 460px)', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'visible', zIndex: 220, pointerEvents: 'none' }}>
+                <img src={ASSETS.TOGETHER} alt="Together" className="animate-comfy-float animate-fade-in-final" draggable={false} style={{ width: '100%', height: '100%', objectFit: 'contain', filter: 'drop-shadow(0 0 40px rgba(255,0,0,0.5)) drop-shadow(0 0 80px rgba(255,0,0,0.3))', WebkitUserDrag: 'none', position: 'relative', zIndex: 221 }} />
               </div>
             ) : (
               <>
-                <img src={ASSETS.TOGETHER} alt="Together" className="animate-comfy-float animate-fade-in-final" draggable={false} style={{ width: '100%', height: '100%', objectFit: 'contain', WebkitUserDrag: 'none', position: 'relative', zIndex: 1 }} />
+                <img src={ASSETS.TOGETHER} alt="Together" className="animate-comfy-float animate-fade-in-final" draggable={false} style={{ width: '100%', height: '100%', objectFit: 'contain', filter: 'drop-shadow(0 0 50px rgba(255,0,0,0.6)) drop-shadow(0 0 100px rgba(255,0,0,0.4))', WebkitUserDrag: 'none', position: 'relative', zIndex: 1 }} />
               </>
             )}
           </div>
@@ -1560,7 +1560,7 @@ function App() {
                 </div>
             </>
           ) : (
-            <div style={{ position: 'relative', marginTop: isMobileView ? 'clamp(10vh, 15vh, 18vh)' : '0', width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: isMobileView ? '0 0.75rem 2rem' : '0 1rem 3rem', minHeight: 'auto', justifyContent: 'flex-start', zIndex: 250, overflow: 'visible' }}>
+            <div style={{ position: 'relative', marginTop: isMobileView ? 'clamp(5vh, 8vh, 12vh)' : '0', width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: isMobileView ? '0 0.75rem 2rem' : '0 1rem 3rem', minHeight: 'auto', justifyContent: 'flex-start', zIndex: 250, overflow: 'visible' }}>
               <FloatingBalloon onClick={() => setShowExtraModal(true)} show={isFinal} />
               {unboxingStage < 4 ? (
                 <div 
