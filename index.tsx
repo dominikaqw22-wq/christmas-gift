@@ -621,7 +621,7 @@ function AvatarJourney({ currentSlide, avatarsFadingOut }: { currentSlide: numbe
   }
 
   return (
-    <div style={{ position: 'relative', width: '100%', height: isMobile ? 'clamp(280px, 40vh, 360px)' : '288px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '0.5rem', opacity: avatarsFadingOut ? 0 : 1, transition: 'opacity 0.8s ease-out', overflow: 'visible' }}>
+    <div style={{ position: 'relative', width: '100%', height: isMobile ? 'clamp(280px, 40vh, 360px)' : '288px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: isMobile ? 'clamp(0.25rem, 0.5vh, 0.5rem)' : '0.5rem', opacity: avatarsFadingOut ? 0 : 1, transition: 'opacity 0.8s ease-out', overflow: 'visible' }}>
       <div style={{ position: 'relative', width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', overflow: 'visible' }}>
         <div style={{ position: 'absolute', height: '1px', background: 'linear-gradient(to right, transparent, rgba(255,255,255,0.2), transparent)', opacity: 0.2, width: `${initialDist * 2.4}px` }} />
 
@@ -952,11 +952,7 @@ function App() {
   }, [unlocked]);
 
   const playClick = () => {
-    if (clickSfxRef.current) {
-      clickSfxRef.current.volume = 0;
-      clickSfxRef.current.currentTime = 0;
-      clickSfxRef.current.play().catch(() => {});
-    }
+    // Click sound removed
   };
 
   const handleNext = () => {
