@@ -1475,7 +1475,7 @@ function App() {
               )}
               
               <div style={{
-                 marginTop: isMobileView ? 'clamp(1rem, 3vh, 2rem)' : '4rem',
+                 marginTop: isMobileView ? 'clamp(0.5rem, 1.5vh, 1rem)' : '4rem',
                  marginBottom: isMobileView ? '1rem' : '0',
                  minHeight: isMobileView ? '60px' : '80px',
                 width: '100%',
@@ -1560,7 +1560,7 @@ function App() {
                 </div>
             </>
           ) : (
-            <div style={{ position: 'relative', marginTop: isMobileView ? 'clamp(1vh, 2vh, 3vh)' : '0', width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: isMobileView ? '0 0.75rem 2rem' : '0 1rem 3rem', minHeight: 'auto', justifyContent: 'flex-start', zIndex: 250, overflow: 'visible' }}>
+            <div style={{ position: 'relative', marginTop: isMobileView ? 'clamp(3vh, 5vh, 6vh)' : '0', width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: isMobileView ? '0 0.75rem 2rem' : '0 1rem 3rem', minHeight: 'auto', justifyContent: 'flex-start', zIndex: 250, overflow: 'visible' }}>
               <FloatingBalloon onClick={() => setShowExtraModal(true)} show={isFinal} />
               {unboxingStage < 4 ? (
                 <div 
