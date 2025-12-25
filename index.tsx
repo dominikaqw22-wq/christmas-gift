@@ -65,7 +65,7 @@ const SLIDES = [
   { text: "Well, knowing you...", mood: "heart" },
   { text: "I bet you're gonna say: \"Oh, you didn't have to do this for me... and this and that...\"", mood: "warm" },
   { text: "But hey, **you deserve it, and so much more.** You're **someone really special to me.**", mood: "heart" },
-  { text: "This comes **straight from my heart** to the girl **I've been loving getting to know more** with each passing day. 💖", mood: "heart" },
+  { text: "This comes **straight from my heart** to the girl **I've been loving getting to know more** with each passing day. ❤️", mood: "heart" },
   { text: "I know we have this distance, and all these busy days that sometimes feel endless...", mood: "heart" },
   { text: "And also everything else you're going through right now... I know...", mood: "heart" },
   { text: "**But always remember that I'm here for you, and I'm not going anywhere.**" },
