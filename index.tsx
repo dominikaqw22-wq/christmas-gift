@@ -604,8 +604,8 @@ function AvatarJourney({ currentSlide, avatarsFadingOut }: { currentSlide: numbe
           <div style={{ position: 'relative', width: isMobile ? 'clamp(260px, 70vw, 350px)' : 'clamp(420px, 80vw, 620px)', height: isMobile ? 'clamp(260px, 70vw, 350px)' : 'clamp(420px, 80vw, 620px)', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'visible' }}>
             {/* On mobile render the together image fixed so its glow isn't clipped */}
             {isMobile ? (
-              <div style={{ position: 'fixed', left: '50%', top: 'clamp(8%, 10%, 12%)', transform: 'translate(-50%, 0)', width: 'clamp(260px, 70vw, 350px)', height: 'clamp(260px, 70vw, 350px)', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'visible', zIndex: 220, pointerEvents: 'none' }}>
-                <div style={{ position: 'absolute', width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 219 }}>
+              <div style={{ position: 'fixed', left: '50%', top: 'clamp(6%, 8%, 10%)', transform: 'translate(-50%, 0)', width: 'clamp(320px, 80vw, 420px)', height: 'clamp(320px, 80vw, 420px)', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'visible', zIndex: 220, pointerEvents: 'none' }}>
+                <div style={{ position: 'absolute', width: '140%', height: '140%', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 219 }}>
                   <RedParticles />
                 </div>
                 <img src={ASSETS.TOGETHER} alt="Together" className="animate-comfy-float animate-fade-in-final" draggable={false} style={{ width: '100%', height: '100%', objectFit: 'contain', WebkitUserDrag: 'none', position: 'relative', zIndex: 221 }} />
@@ -725,7 +725,9 @@ function FloatingBalloon({ onClick, show }: { onClick: () => void; show: boolean
         position: 'relative',
         display: 'flex',
         flexDirection: 'column',
-        alignItems: 'center'
+        alignItems: 'center',
+        padding: isMobileView ? '20px' : '0',
+        overflow: 'visible'
       }}>
         <div 
           onMouseEnter={(e) => {
@@ -735,8 +737,8 @@ function FloatingBalloon({ onClick, show }: { onClick: () => void; show: boolean
             e.currentTarget.style.filter = 'drop-shadow(0 0 6px #8528ee) drop-shadow(0 0 12px rgba(133, 40, 238, 0.2))';
           }}
           style={{
-            width: isMobileView ? 'min(180px, 45vw)' : 'clamp(140px, 30vw, 180px)',
-            height: isMobileView ? 'min(180px, 45vw)' : 'clamp(140px, 30vw, 180px)',
+            width: isMobileView ? 'min(140px, 35vw)' : 'clamp(140px, 30vw, 180px)',
+            height: isMobileView ? 'min(140px, 35vw)' : 'clamp(140px, 30vw, 180px)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
