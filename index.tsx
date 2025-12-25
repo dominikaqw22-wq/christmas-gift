@@ -1071,7 +1071,8 @@ function App() {
       minHeight: '100vh',
       width: '100%',
       maxWidth: '100vw',
-      overflow: 'visible',
+      overflowX: 'hidden',
+      overflowY: 'auto',
       paddingTop: '40px',
       paddingBottom: isMobileView ? '2rem' : '0',
       background: `#060606 radial-gradient(ellipse at center, rgba(220, 38, 38, ${0.08 + progressGlow * 0.22}) 0%, rgba(6, 6, 6, 1) 70%)`,
@@ -1182,7 +1183,7 @@ function App() {
             volumeBarTimeout.current = setTimeout(() => setShowVolumeBar(false), 2000);
           }}
           >
-            <div style={{ position: 'relative', width: '200px', height: '24px', display: 'flex', alignItems: 'center' }}>
+            <div style={{ position: 'relative', width: isMobileView ? '150px' : '200px', height: '24px', display: 'flex', alignItems: 'center' }}>
               <div style={{
                 position: 'absolute',
                 left: 0,
@@ -1228,7 +1229,7 @@ function App() {
 
       <main style={{
         width: '100%',
-        maxWidth: '80rem',
+        maxWidth: 'min(80rem, 100vw)',
         padding: 'clamp(0.75rem, 5vw, 1rem)',
         margin: '0 auto',
         display: 'flex',
@@ -1240,7 +1241,8 @@ function App() {
         zIndex: 10,
         borderRadius: '12px',
         overflow: 'visible',
-        boxSizing: 'border-box'
+        boxSizing: 'border-box',
+        overflowX: 'hidden'
       }}>
         <div style={{
           opacity: currentSlide === 0 && !showSlide0Elements ? 0 : 1,
@@ -1299,11 +1301,16 @@ function App() {
         <div style={{
           minHeight: isMobileView ? '400px' : '500px',
           width: '100%',
+          maxWidth: '100vw',
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
           justifyContent: 'flex-start',
-          paddingTop: 'clamp(1.5rem, 5vw, 3rem)'
+          paddingTop: 'clamp(1.5rem, 5vw, 3rem)',
+          paddingLeft: '0.5rem',
+          paddingRight: '0.5rem',
+          boxSizing: 'border-box',
+          overflowX: 'hidden'
         }}>
           {!isFinal ? (
             <>
@@ -1312,7 +1319,8 @@ function App() {
                 top: '50%',
                 left: '50%',
                 transform: 'translate(-50%, -50%)',
-                width: '800px',
+                width: isMobileView ? '90vw' : 'min(800px, 90vw)',
+                maxWidth: '100%',
                 height: '400px',
                 background: 'radial-gradient(ellipse at center, rgba(255, 255, 255, 0.02) 0%, transparent 70%)',
                 pointerEvents: 'none',
@@ -1334,10 +1342,9 @@ function App() {
                   <div style={{
                     position: 'relative',
                     width: '100%',
-                    maxWidth: '380px',
-                    minWidth: '280px',
-                    animation: unlocked ? 'fadeOutDown 0.6s cubic-bezier(0.4, 0, 1, 1) forwards' : 'fadeInDown 0.6s cubic-bezier(0.16, 1, 0.3, 1)',
-                    padding: '0 1rem'
+                    maxWidth: 'min(380px, 90vw)',
+                    padding: '0 1rem',
+                    animation: unlocked ? 'fadeOutDown 0.6s cubic-bezier(0.4, 0, 1, 1) forwards' : 'fadeInDown 0.6s cubic-bezier(0.16, 1, 0.3, 1)'
                   }}>
                     <div style={{
                       position: 'relative',
@@ -1742,7 +1749,8 @@ function App() {
           boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
           maxHeight: '300px',
           overflowY: 'auto',
-          width: '256px',
+          width: isMobileView ? 'calc(100vw - 3rem)' : '256px',
+          maxWidth: '256px',
           zIndex: 50
         }}>
           <p style={{
