@@ -1828,15 +1828,17 @@ function App() {
             position: 'relative',
             backgroundColor: 'rgba(15, 15, 15, 0.98)',
             borderRadius: '1.5rem',
-            padding: extraModalStep === 'story' ? 'clamp(2rem, 5vw, 3rem)' : 'clamp(2rem, 5vw, 3rem) clamp(1.5rem, 4vw, 2.5rem)',
-            paddingBottom: '2.5rem',
+            padding: extraModalStep === 'story' ? (isMobileView ? 'clamp(1.5rem, 4vw, 2rem)' : 'clamp(2rem, 5vw, 3rem)') : 'clamp(2rem, 5vw, 3rem) clamp(1.5rem, 4vw, 2.5rem)',
+            paddingBottom: isMobileView ? '1.5rem' : '2.5rem',
             maxWidth: extraModalStep === 'story' ? 'min(900px, 95vw)' : 'min(520px, 95vw)',
             width: '90%',
-            maxHeight: '85vh',
+            maxHeight: isMobileView ? (extraModalStep === 'story' ? '80vh' : '70vh') : '85vh',
             overflow: 'auto',
             boxShadow: '0 25px 60px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.1)',
             animation: 'fadeIn 0.3s ease',
-            boxSizing: 'border-box'
+            boxSizing: 'border-box',
+            display: 'flex',
+            flexDirection: 'column'
           }}>
             {extraModalStep === 'question' && (
               <>
