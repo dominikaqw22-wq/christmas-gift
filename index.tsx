@@ -592,14 +592,14 @@ function AvatarJourney({ currentSlide, avatarsFadingOut }: { currentSlide: numbe
 
   if (isFinal) {
     return (
-      <div style={{ position: 'relative', width: '100%', maxWidth: '100vw', height: isMobile ? 'clamp(520px, 78vh, 860px)' : 'clamp(620px, 82vh, 920px)', maxHeight: 'calc(100vh - 80px)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: isMobile ? '1.5rem' : '2rem', marginTop: isMobile ? 'clamp(1rem, 4vh, 3rem)' : 'clamp(2rem, 6vh, 4rem)', padding: isMobile ? '0 0.5rem' : '0 1rem', overflow: 'visible' }}>
-        <div className="parallax-slow" style={{ position: 'relative', width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', transform: `scale(${sceneScale})`, transformOrigin: 'center center' }}>
-          <div style={{ position: 'relative', width: 'clamp(360px, 82vw, 620px)', height: 'clamp(360px, 82vw, 620px)', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'visible' }}>
-            {/* On mobile render the together image fixed so its glow isn't clipped by ancestor overflow:hidden */}
+      <div style={{ position: 'relative', width: '100%', maxWidth: '100vw', height: isMobile ? 'clamp(280px, 42vh, 420px)' : 'clamp(520px, 70vh, 720px)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '0', marginTop: isMobile ? 'clamp(0.5rem, 2vh, 1.5rem)' : 'clamp(2rem, 6vh, 4rem)', padding: '0', overflow: 'visible' }}>
+        <div className="parallax-slow" style={{ position: 'relative', width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <div style={{ position: 'relative', width: isMobile ? 'clamp(280px, 75vw, 380px)' : 'clamp(420px, 80vw, 620px)', height: isMobile ? 'clamp(280px, 75vw, 380px)' : 'clamp(420px, 80vw, 620px)', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'visible' }}>
+            {/* On mobile render the together image fixed so its glow isn't clipped */}
             {isMobile ? (
-              <div style={{ position: 'fixed', left: '50%', top: '10%', transform: 'translate(-50%, 0)', width: 'clamp(360px, 88vw, 680px)', height: 'clamp(360px, 88vw, 680px)', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'visible', zIndex: 220 }}>
+              <div style={{ position: 'fixed', left: '50%', top: '8%', transform: 'translate(-50%, 0)', width: 'clamp(280px, 75vw, 380px)', height: 'clamp(280px, 75vw, 380px)', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'visible', zIndex: 220, pointerEvents: 'none' }}>
                 <RedParticles />
-                <img src={ASSETS.TOGETHER} alt="Together" className="animate-comfy-float animate-fade-in-final" draggable={false} style={{ width: '100%', height: '100%', objectFit: 'contain', filter: 'drop-shadow(0 0 80px rgba(255,0,0,0.8)) drop-shadow(0 0 140px rgba(255,0,0,0.6)) drop-shadow(0 0 200px rgba(255,0,0,0.45))', WebkitUserDrag: 'none', position: 'relative', zIndex: 221 }} />
+                <img src={ASSETS.TOGETHER} alt="Together" className="animate-comfy-float animate-fade-in-final" draggable={false} style={{ width: '100%', height: '100%', objectFit: 'contain', filter: 'drop-shadow(0 0 60px rgba(255,0,0,0.6)) drop-shadow(0 0 100px rgba(255,0,0,0.4)) drop-shadow(0 0 140px rgba(255,0,0,0.3))', WebkitUserDrag: 'none', position: 'relative', zIndex: 221 }} />
               </div>
             ) : (
               <>
@@ -608,10 +608,10 @@ function AvatarJourney({ currentSlide, avatarsFadingOut }: { currentSlide: numbe
               </>
             )}
           </div>
-          <div className="animate-fade-in-final" style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-start', zIndex: 230, paddingTop: isMobile ? 'clamp(220px, 52%, 320px)' : 'clamp(240px, 55%, 320px)', gap: '0.25rem' }}>
-            <div className="animate-gentle-float" style={{ fontSize: isMobile ? 'clamp(1.4rem, 4.8vw, 1.8rem)' : 'clamp(1.2rem, 4.2vw, 1.6rem)', fontFamily: 'Geist, sans-serif', fontWeight: isMobile ? '400' : '600', color: 'rgba(255, 255, 255, 0.95)', letterSpacing: '0.05em', textAlign: 'center', textShadow: '0 0 15px rgba(255, 255, 255, 0.6)', padding: '0 1rem' }}>Merry Christmas</div>
+          <div className="animate-fade-in-final" style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-start', zIndex: 230, paddingTop: isMobile ? 'clamp(160px, 48%, 220px)' : 'clamp(240px, 55%, 320px)', gap: '0.25rem', pointerEvents: 'none' }}>
+            <div className="animate-gentle-float" style={{ fontSize: isMobile ? 'clamp(1.1rem, 4vw, 1.4rem)' : 'clamp(1.2rem, 4.2vw, 1.6rem)', fontFamily: 'Geist, sans-serif', fontWeight: isMobile ? '400' : '600', color: 'rgba(255, 255, 255, 0.95)', letterSpacing: '0.05em', textAlign: 'center', textShadow: '0 0 15px rgba(255, 255, 255, 0.6)', padding: '0 1rem' }}>Merry Christmas</div>
             <div className="animate-gentle-float" style={{ transition: 'margin 0.1s ease-out', animationDelay: '0.3s' }}>
-              <div className="animate-glow-pulse" style={{ fontSize: isMobile ? 'clamp(2.3rem, 7.5vw, 3.5rem)' : 'clamp(2rem, 6.5vw, 3rem)', fontFamily: 'Geist, sans-serif', fontWeight: isMobile ? '700' : '800', color: 'rgba(255,255,255,1)', letterSpacing: '-0.02em', textAlign: 'center', padding: '0 1rem' }}>MY SPOOKY LOVE!</div>
+              <div className="animate-glow-pulse" style={{ fontSize: isMobile ? 'clamp(1.8rem, 6.5vw, 2.8rem)' : 'clamp(2rem, 6.5vw, 3rem)', fontFamily: 'Geist, sans-serif', fontWeight: isMobile ? '700' : '800', color: 'rgba(255,255,255,1)', letterSpacing: '-0.02em', textAlign: 'center', padding: '0 1rem' }}>MY SPOOKY LOVE!</div>
             </div>
           </div>
         </div>
@@ -737,11 +737,11 @@ function FloatingBalloon({ onClick, show }: { onClick: () => void; show: boolean
       className="animate-gentle-float"
       style={{
         position: 'absolute',
-        // Keep balloon fully visible above envelope/gift card
-        right: isMobileView ? 'clamp(6%, 10vw, 14%)' : 'clamp(8%, 10vw, 14%)',
-        top: isMobileView ? 'clamp(6vh, 10vh, 14vh)' : 'clamp(8vh, 12vh, 16vh)',
+        // Keep balloon visible above envelope, relative to parent container
+        right: isMobileView ? 'clamp(8%, 12vw, 18%)' : 'clamp(8%, 10vw, 14%)',
+        top: isMobileView ? 'clamp(-60px, -12vh, -40px)' : 'clamp(-80px, -10vh, -60px)',
         cursor: 'pointer',
-        zIndex: 50,
+        zIndex: 270,
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
@@ -767,8 +767,8 @@ function FloatingBalloon({ onClick, show }: { onClick: () => void; show: boolean
             e.currentTarget.style.filter = 'drop-shadow(0 0 6px #8528ee) drop-shadow(0 0 12px rgba(133, 40, 238, 0.2))';
           }}
           style={{
-            width: 'clamp(140px, 30vw, 180px)',
-            height: 'clamp(140px, 30vw, 180px)',
+            width: isMobileView ? 'clamp(100px, 22vw, 140px)' : 'clamp(140px, 30vw, 180px)',
+            height: isMobileView ? 'clamp(100px, 22vw, 140px)' : 'clamp(140px, 30vw, 180px)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
@@ -1593,7 +1593,7 @@ function App() {
                 </div>
             </>
           ) : (
-            <div style={{ position: 'relative', marginTop: isMobileView ? '-1rem' : '-2rem', width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: isMobileView ? '0 0.75rem 5rem' : '0 1rem 4rem', minHeight: isMobileView ? 'min(75vh, 620px)' : 'min(75vh, 660px)', justifyContent: 'flex-start', zIndex: 10, overflow: 'visible' }}>
+            <div style={{ position: 'relative', marginTop: '0', width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: isMobileView ? '0 0.75rem 2rem' : '0 1rem 3rem', minHeight: 'auto', justifyContent: 'flex-start', zIndex: 250, overflow: 'visible' }}>
               <FloatingBalloon onClick={() => setShowExtraModal(true)} show={isFinal} />
               {unboxingStage < 4 ? (
                 <div 
@@ -1606,12 +1606,13 @@ function App() {
                     perspective: '1000px',
                     borderRadius: '0.75rem',
                     animation: 'fadeInUp 0.8s ease forwards',
-                    opacity: 0
+                    opacity: 0,
+                    zIndex: 260
                   }}
                 >
                   <div style={{
                     position: 'relative',
-                    width: 'clamp(256px, 80vw, 384px)',
+                    width: isMobileView ? 'clamp(220px, 70vw, 320px)' : 'clamp(256px, 80vw, 384px)',
                     aspectRatio: '1.4/1',
                     background: '#1a1a1a',
                     backgroundImage: "url('https://www.transparenttextures.com/patterns/linen.png')",
@@ -1714,7 +1715,7 @@ function App() {
                   </div>
                 </div>
               ) : (
-                <div className="animate-slide-in-up" style={{ width: '100%', maxWidth: '28rem' }}>
+                <div className="animate-slide-in-up" style={{ width: '100%', maxWidth: isMobileView ? '85vw' : '28rem', zIndex: 260 }}>
                   <GiftCard code={GIFT_CODE} onCopy={playClick} />
                 </div>
               )}
