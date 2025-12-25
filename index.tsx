@@ -689,9 +689,12 @@ function FloatingBalloon({ onClick, show }: { onClick: () => void; show: boolean
   const [imageLoaded, setImageLoaded] = React.useState(false);
 
   React.useEffect(() => {
-    // Preload ExtraGift image
+    // Preload ExtraGift image immediately
     const img = new Image();
-    img.onload = () => setImageLoaded(true);
+    img.onload = () => {
+      // Add small delay to ensure image is fully rendered
+      setTimeout(() => setImageLoaded(true), 50);
+    };
     img.src = ExtraGiftImg;
   }, []);
 
@@ -730,7 +733,8 @@ function FloatingBalloon({ onClick, show }: { onClick: () => void; show: boolean
         opacity: show ? 1 : 0,
         transform: show ? `translate(${localMousePos.x * 15}px, ${localMousePos.y * 12}px) translateY(0)` : 'translate(0, -40px)',
         transition: 'opacity 1s ease 0.3s, transform 1s ease 0.3s',
-        pointerEvents: show ? 'auto' : 'none'
+        pointerEvents: show ? 'auto' : 'none',
+        visibility: imageLoaded ? 'visible' : 'hidden'
       }}
     >
       <div style={{
