@@ -621,8 +621,8 @@ function AvatarJourney({ currentSlide, avatarsFadingOut }: { currentSlide: numbe
   }
 
   return (
-    <div style={{ position: 'relative', width: '100%', height: isMobile ? 'clamp(240px, 35vh, 320px)' : '288px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '0.5rem', opacity: avatarsFadingOut ? 0 : 1, transition: 'opacity 0.8s ease-out' }}>
-      <div style={{ position: 'relative', width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%' }}>
+    <div style={{ position: 'relative', width: '100%', height: isMobile ? 'clamp(280px, 40vh, 360px)' : '288px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '0.5rem', opacity: avatarsFadingOut ? 0 : 1, transition: 'opacity 0.8s ease-out', overflow: 'visible' }}>
+      <div style={{ position: 'relative', width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', overflow: 'visible' }}>
         <div style={{ position: 'absolute', height: '1px', background: 'linear-gradient(to right, transparent, rgba(255,255,255,0.2), transparent)', opacity: 0.2, width: `${initialDist * 2.4}px` }} />
 
         <div className="parallax-char-left" style={{ position: 'absolute', left: '50%', zIndex: 20, display: 'flex', flexDirection: 'column', alignItems: 'center', transform: isMobile ? `translate3d(calc(-50% - ${currentGap / 2}px), 0, 0) scale(${1 + approachProgressMobile * 0.12})` : `translate3d(calc(-50% - ${currentGap / 2}px), 0, 0) scale(${1 + approachProgress * 0.12})`, transition: 'transform 600ms cubic-bezier(.22,.8,.2,1)', willChange: 'transform' }}>
@@ -1286,7 +1286,7 @@ function App() {
            flexDirection: 'column',
            alignItems: 'center',
            justifyContent: 'flex-start',
-           paddingTop: isMobileView ? 'clamp(3rem, 8vh, 5rem)' : 'clamp(1.5rem, 5vw, 3rem)',
+           paddingTop: isMobileView ? 'clamp(0.5rem, 2vh, 1.5rem)' : 'clamp(1.5rem, 5vw, 3rem)',
            paddingLeft: isMobileView ? '0.25rem' : '0.5rem',
            paddingRight: isMobileView ? '0.25rem' : '0.5rem',
            boxSizing: 'border-box',
@@ -1560,7 +1560,7 @@ function App() {
                 </div>
             </>
           ) : (
-            <div style={{ position: 'relative', marginTop: isMobileView ? 'clamp(5vh, 8vh, 12vh)' : '0', width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: isMobileView ? '0 0.75rem 2rem' : '0 1rem 3rem', minHeight: 'auto', justifyContent: 'flex-start', zIndex: 250, overflow: 'visible' }}>
+            <div style={{ position: 'relative', marginTop: isMobileView ? 'clamp(1vh, 2vh, 3vh)' : '0', width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: isMobileView ? '0 0.75rem 2rem' : '0 1rem 3rem', minHeight: 'auto', justifyContent: 'flex-start', zIndex: 250, overflow: 'visible' }}>
               <FloatingBalloon onClick={() => setShowExtraModal(true)} show={isFinal} />
               {unboxingStage < 4 ? (
                 <div 
