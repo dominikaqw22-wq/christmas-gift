@@ -469,7 +469,7 @@ function Typewriter({ text, onComplete, shouldBlink = false }: { text: string; o
       style={{
         textAlign: 'center',
         width: '100%',
-        padding: 'clamp(0.5rem, 5vw, 2rem)',
+        padding: 'clamp(0.25rem, 3vw, 2rem)',
         position: 'relative',
         maxWidth: '100%',
         margin: '0 auto',
@@ -484,7 +484,7 @@ function Typewriter({ text, onComplete, shouldBlink = false }: { text: string; o
         position: 'relative',
         display: 'inline',
         fontSize: 'clamp(1.4rem, 5.5vw, 2.8rem)',
-        lineHeight: '1.7',
+        lineHeight: 'clamp(1.4, 1.7, 1.7)',
         letterSpacing: '-0.025em',
         color: 'rgba(255, 255, 255, 0.95)',
         textShadow: '0 2px 8px rgba(0, 0, 0, 0.3)',
@@ -609,17 +609,17 @@ function AvatarJourney({ currentSlide, avatarsFadingOut }: { currentSlide: numbe
   }
 
   return (
-    <div style={{ position: 'relative', width: '100%', height: isMobile ? '320px' : '288px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '0.5rem', opacity: avatarsFadingOut ? 0 : 1, transition: 'opacity 0.8s ease-out' }}>
+    <div style={{ position: 'relative', width: '100%', height: isMobile ? 'clamp(240px, 35vh, 320px)' : '288px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '0.5rem', opacity: avatarsFadingOut ? 0 : 1, transition: 'opacity 0.8s ease-out' }}>
       <div style={{ position: 'relative', width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%' }}>
         <div style={{ position: 'absolute', height: '1px', background: 'linear-gradient(to right, transparent, rgba(255,255,255,0.2), transparent)', opacity: 0.2, width: `${initialDist * 2.4}px` }} />
 
         <div className="parallax-char-left" style={{ position: 'absolute', left: '50%', zIndex: 20, display: 'flex', flexDirection: 'column', alignItems: 'center', transform: isMobile ? `translate3d(calc(-50% - ${currentGap / 2}px), 0, 0) scale(${1 + approachProgressMobile * 0.12})` : `translate3d(calc(-50% - ${currentGap / 2}px), 0, 0) scale(${1 + approachProgress * 0.12})`, transition: 'transform 600ms cubic-bezier(.22,.8,.2,1)', willChange: 'transform' }}>
-          <img src={ASSETS.ME[expIndex]} alt="Me" draggable={false} style={{ width: 'clamp(150px, 36vw, 200px)', height: 'clamp(150px, 36vw, 200px)', objectFit: 'contain', filter: `saturate(${saturation}) drop-shadow(0 0 ${glowBase + approachProgress * glowScale}px rgba(255,0,0,${glowOpacity1})) drop-shadow(0 0 ${approachProgress * glow2Scale}px rgba(255,0,0,${glowOpacity2}))`, transition: 'filter 0.6s ease', WebkitUserDrag: 'none' }} />
+           <img src={ASSETS.ME[expIndex]} alt="Me" draggable={false} style={{ width: isMobile ? 'clamp(120px, 32vw, 180px)' : 'clamp(150px, 36vw, 200px)', height: isMobile ? 'clamp(120px, 32vw, 180px)' : 'clamp(150px, 36vw, 200px)', objectFit: 'contain', filter: `saturate(${saturation}) drop-shadow(0 0 ${glowBase + approachProgress * glowScale}px rgba(255,0,0,${glowOpacity1})) drop-shadow(0 0 ${approachProgress * glow2Scale}px rgba(255,0,0,${glowOpacity2}))`, transition: 'filter 0.6s ease', WebkitUserDrag: 'none' }} />
           <span style={{ marginTop: 0, fontSize: '8px', fontWeight: 'bold', letterSpacing: '0.4em', color: 'rgba(255,255,255,0.1)', textTransform: 'uppercase', marginLeft: '2.5rem' }}>ME</span>
         </div>
 
         <div className="parallax-char-right" style={{ position: 'absolute', left: '50%', zIndex: 20, display: 'flex', flexDirection: 'column', alignItems: 'center', transform: isMobile ? `translate3d(calc(-50% + ${currentGap / 2}px), 0, 0) scale(${1 + approachProgressMobile * 0.12})` : `translate3d(calc(-50% + ${currentGap / 2}px), 0, 0) scale(${1 + approachProgress * 0.12})`, transition: 'transform 600ms cubic-bezier(.22,.8,.2,1)', willChange: 'transform' }}>
-          <img src={ASSETS.HER[expIndex]} alt="You" draggable={false} style={{ width: 'clamp(150px, 36vw, 200px)', height: 'clamp(150px, 36vw, 200px)', objectFit: 'contain', filter: `saturate(${saturation}) drop-shadow(0 0 ${glowBase + approachProgress * glowScale}px rgba(255,0,0,${glowOpacity1})) drop-shadow(0 0 ${approachProgress * glow2Scale}px rgba(255,0,0,${glowOpacity2}))`, transition: 'filter 0.6s ease', WebkitUserDrag: 'none' }} />
+           <img src={ASSETS.HER[expIndex]} alt="You" draggable={false} style={{ width: isMobile ? 'clamp(120px, 32vw, 180px)' : 'clamp(150px, 36vw, 200px)', height: isMobile ? 'clamp(120px, 32vw, 180px)' : 'clamp(150px, 36vw, 200px)', objectFit: 'contain', filter: `saturate(${saturation}) drop-shadow(0 0 ${glowBase + approachProgress * glowScale}px rgba(255,0,0,${glowOpacity1})) drop-shadow(0 0 ${approachProgress * glow2Scale}px rgba(255,0,0,${glowOpacity2}))`, transition: 'filter 0.6s ease', WebkitUserDrag: 'none' }} />
           <span style={{ marginTop: 0, fontSize: '8px', fontWeight: 'bold', letterSpacing: '0.4em', color: 'rgba(255,255,255,0.1)', textTransform: 'uppercase', marginRight: '1rem' }}>YOU</span>
         </div>
       </div>
@@ -1230,13 +1230,14 @@ function App() {
       <main style={{
         width: '100%',
         maxWidth: 'min(80rem, 100vw)',
-        padding: 'clamp(0.75rem, 5vw, 1rem)',
+        padding: isMobileView ? 'clamp(0.5rem, 3vw, 0.75rem)' : 'clamp(0.75rem, 5vw, 1rem)',
         margin: '0 auto',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: isMobileView ? 'flex-start' : 'center',
         minHeight: '100vh',
+        height: isMobileView ? 'auto' : 'auto',
         position: 'relative',
         zIndex: 10,
         borderRadius: '12px',
@@ -1254,8 +1255,8 @@ function App() {
         </div>
         
         {!isFinal && (
-          <div style={{ 
-            marginBottom: '1.5rem', 
+           <div style={{ 
+             marginBottom: isMobileView ? 'clamp(0.5rem, 2vh, 1rem)' : '1.5rem',
             display: 'flex', 
             flexDirection: 'column', 
             alignItems: 'center', 
@@ -1299,18 +1300,19 @@ function App() {
         )}
 
         <div style={{
-          minHeight: isMobileView ? '400px' : '500px',
-          width: '100%',
-          maxWidth: '100vw',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'flex-start',
-          paddingTop: 'clamp(1.5rem, 5vw, 3rem)',
-          paddingLeft: '0.5rem',
-          paddingRight: '0.5rem',
-          boxSizing: 'border-box',
-          overflowX: 'hidden'
+           minHeight: isMobileView ? 'auto' : '500px',
+           width: '100%',
+           maxWidth: '100vw',
+           display: 'flex',
+           flexDirection: 'column',
+           alignItems: 'center',
+           justifyContent: 'flex-start',
+           paddingTop: isMobileView ? 'clamp(0.5rem, 2vw, 1rem)' : 'clamp(1.5rem, 5vw, 3rem)',
+           paddingLeft: '0.5rem',
+           paddingRight: '0.5rem',
+           boxSizing: 'border-box',
+           overflowX: 'hidden',
+           flex: 1
         }}>
           {!isFinal ? (
             <>
@@ -1493,8 +1495,9 @@ function App() {
               )}
               
               <div style={{
-                marginTop: '4rem',
-                minHeight: '80px',
+                 marginTop: isMobileView ? 'clamp(1rem, 3vh, 2rem)' : '4rem',
+                 marginBottom: isMobileView ? '1rem' : '0',
+                 minHeight: isMobileView ? '60px' : '80px',
                 width: '100%',
                 display: 'flex',
                 justifyContent: 'center',
