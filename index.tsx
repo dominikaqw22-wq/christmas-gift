@@ -621,7 +621,7 @@ function AvatarJourney({ currentSlide, avatarsFadingOut }: { currentSlide: numbe
   }
 
   return (
-    <div style={{ position: 'relative', width: '100%', height: isMobile ? 'clamp(280px, 40vh, 360px)' : '288px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: isMobile ? 'clamp(0.25rem, 0.5vh, 0.5rem)' : '0.5rem', opacity: avatarsFadingOut ? 0 : 1, transition: 'opacity 0.8s ease-out', overflow: 'visible' }}>
+    <div style={{ position: 'relative', width: '100%', height: isMobile ? 'clamp(280px, 40vh, 360px)' : '288px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: isMobile ? '0' : '0.5rem', opacity: avatarsFadingOut ? 0 : 1, transition: 'opacity 0.8s ease-out', overflow: 'visible' }}>
       <div style={{ position: 'relative', width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', overflow: 'visible' }}>
         <div style={{ position: 'absolute', height: '1px', background: 'linear-gradient(to right, transparent, rgba(255,255,255,0.2), transparent)', opacity: 0.2, width: `${initialDist * 2.4}px` }} />
 
@@ -1231,7 +1231,7 @@ function App() {
         
         {!isFinal && (
            <div style={{ 
-             marginBottom: isMobileView ? 'clamp(0.5rem, 2vh, 1rem)' : '1.5rem',
+             marginBottom: isMobileView ? '0.25rem' : '1.5rem',
             display: 'flex', 
             flexDirection: 'column', 
             alignItems: 'center', 
@@ -1282,7 +1282,7 @@ function App() {
            flexDirection: 'column',
            alignItems: 'center',
            justifyContent: 'flex-start',
-           paddingTop: isMobileView ? 'clamp(0.5rem, 2vh, 1.5rem)' : 'clamp(1.5rem, 5vw, 3rem)',
+           paddingTop: isMobileView ? '0' : 'clamp(1.5rem, 5vw, 3rem)',
            paddingLeft: isMobileView ? '0.25rem' : '0.5rem',
            paddingRight: isMobileView ? '0.25rem' : '0.5rem',
            boxSizing: 'border-box',
