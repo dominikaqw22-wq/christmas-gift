@@ -27,12 +27,12 @@ import StarNeutral from './Characters/Star_Neutral.png';
 import StarHappy from './Characters/Star_Happy.png';
 import StarHappier from './Characters/Star_Happier.png';
 import StarSuperHappy from './Characters/Star_SuperHappy.png';
-import DominikStarTogether from './Characters/DominikStarTogether.png';
+import DominikStarTogether from './Characters/DominikStarTogether.png?v=2';
 import ChristmasAudio from './Audio/Snow Days - Christmas Lofi & Jazzhop.mp3';
 import ClickSfx from './Audio/click.mp3';
 import ExtraGiftImg from './Images/ExtraGift.png';
 import CatGif from './Images/cat.gif';
-import GCBackground from './Images/GCBackground.png';
+import GCBackground from './Images/GCBackground.png?v=2';
 
 const ASSETS = {
   ME: [
