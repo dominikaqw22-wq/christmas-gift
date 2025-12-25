@@ -694,10 +694,10 @@ function FloatingBalloon({ onClick, show }: { onClick: () => void; show: boolean
       onClick={onClick}
       className="animate-gentle-float"
       style={{
-        position: 'absolute',
+        position: isMobileView ? 'fixed' : 'absolute',
         // Keep balloon visible above envelope, relative to parent container
         right: isMobileView ? 'clamp(8%, 12vw, 18%)' : 'clamp(8%, 10vw, 14%)',
-        top: isMobileView ? 'clamp(-60px, -12vh, -40px)' : 'clamp(-80px, -10vh, -60px)',
+        top: isMobileView ? 'clamp(5vh, 8vh, 12vh)' : 'clamp(-80px, -10vh, -60px)',
         cursor: 'pointer',
         zIndex: 270,
         display: 'flex',
