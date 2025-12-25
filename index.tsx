@@ -678,6 +678,14 @@ function GiftCard({ code, onCopy }: { code: string; onCopy: () => void }) {
 function FloatingBalloon({ onClick, show }: { onClick: () => void; show: boolean }) {
   const [localMousePos, setLocalMousePos] = React.useState({ x: 0, y: 0 });
   const [isMobileView, setIsMobileView] = React.useState(() => typeof window !== 'undefined' && window.innerWidth < 768);
+  const [imageLoaded, setImageLoaded] = React.useState(false);
+
+  React.useEffect(() => {
+    // Preload ExtraGift image
+    const img = new Image();
+    img.onload = () => setImageLoaded(true);
+    img.src = ExtraGiftImg;
+  }, []);
 
   React.useEffect(() => {
     const handleResize = () => setIsMobileView(window.innerWidth < 768);
@@ -740,11 +748,13 @@ function FloatingBalloon({ onClick, show }: { onClick: () => void; show: boolean
             justifyContent: 'center',
             position: 'relative',
             transition: 'all 0.3s ease',
-            filter: 'drop-shadow(0 0 6px #8528ee) drop-shadow(0 0 12px rgba(133, 40, 238, 0.2))'
+            filter: 'drop-shadow(0 0 6px #8528ee) drop-shadow(0 0 12px rgba(133, 40, 238, 0.2))',
+            opacity: imageLoaded ? 1 : 0
           }}>
           <img 
             src={ExtraGiftImg} 
             alt="Extra Gift"
+            onLoad={() => setImageLoaded(true)}
             style={{
               width: '100%',
               height: '100%',
